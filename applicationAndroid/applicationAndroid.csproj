@@ -141,8 +141,10 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AssoNoteLieuController.cs" />
     <Compile Include="Controllers\ChatEntreUtilisateursController.cs" />
+    <Compile Include="Controllers\GroupeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LieuController.cs" />
+    <Compile Include="Controllers\PublicationController.cs" />
     <Compile Include="Controllers\SportController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -233,6 +235,16 @@
     <Content Include="Views\ChatEntreUtilisateurs\Details.cshtml" />
     <Content Include="Views\ChatEntreUtilisateurs\Edit.cshtml" />
     <Content Include="Views\ChatEntreUtilisateurs\Index.cshtml" />
+    <Content Include="Views\Groupe\Create.cshtml" />
+    <Content Include="Views\Groupe\Delete.cshtml" />
+    <Content Include="Views\Groupe\Details.cshtml" />
+    <Content Include="Views\Groupe\Edit.cshtml" />
+    <Content Include="Views\Groupe\Index.cshtml" />
+    <Content Include="Views\Publication\Create.cshtml" />
+    <Content Include="Views\Publication\Delete.cshtml" />
+    <Content Include="Views\Publication\Details.cshtml" />
+    <Content Include="Views\Publication\Edit.cshtml" />
+    <Content Include="Views\Publication\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
