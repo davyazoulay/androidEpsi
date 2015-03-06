@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Sport\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -138,9 +139,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AssoNoteLieuController.cs" />
+    <Compile Include="Controllers\ChatEntreUtilisateursController.cs" />
+    <Compile Include="Controllers\GroupeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LieuController.cs" />
+    <Compile Include="Controllers\PublicationController.cs" />
+    <Compile Include="Controllers\SportController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VilleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +215,36 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Lieu\Create.cshtml" />
+    <Content Include="Views\Lieu\Delete.cshtml" />
+    <Content Include="Views\Lieu\Details.cshtml" />
+    <Content Include="Views\Lieu\Edit.cshtml" />
+    <Content Include="Views\Lieu\Index.cshtml" />
+    <Content Include="Views\Ville\Create.cshtml" />
+    <Content Include="Views\Ville\Delete.cshtml" />
+    <Content Include="Views\Ville\Details.cshtml" />
+    <Content Include="Views\Ville\Edit.cshtml" />
+    <Content Include="Views\Ville\Index.cshtml" />
+    <Content Include="Views\AssoNoteLieu\Create.cshtml" />
+    <Content Include="Views\AssoNoteLieu\Delete.cshtml" />
+    <Content Include="Views\AssoNoteLieu\Details.cshtml" />
+    <Content Include="Views\AssoNoteLieu\Edit.cshtml" />
+    <Content Include="Views\AssoNoteLieu\Index.cshtml" />
+    <Content Include="Views\ChatEntreUtilisateurs\Create.cshtml" />
+    <Content Include="Views\ChatEntreUtilisateurs\Delete.cshtml" />
+    <Content Include="Views\ChatEntreUtilisateurs\Details.cshtml" />
+    <Content Include="Views\ChatEntreUtilisateurs\Edit.cshtml" />
+    <Content Include="Views\ChatEntreUtilisateurs\Index.cshtml" />
+    <Content Include="Views\Groupe\Create.cshtml" />
+    <Content Include="Views\Groupe\Delete.cshtml" />
+    <Content Include="Views\Groupe\Details.cshtml" />
+    <Content Include="Views\Groupe\Edit.cshtml" />
+    <Content Include="Views\Groupe\Index.cshtml" />
+    <Content Include="Views\Publication\Create.cshtml" />
+    <Content Include="Views\Publication\Delete.cshtml" />
+    <Content Include="Views\Publication\Details.cshtml" />
+    <Content Include="Views\Publication\Edit.cshtml" />
+    <Content Include="Views\Publication\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
