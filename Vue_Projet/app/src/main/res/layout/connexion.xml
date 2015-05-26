@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nom Application"
+        android:id="@+id/NomAppli"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/Pseudo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Phrase d&apos;accroche / de bienvenue"
+        android:id="@+id/Accroche"
+        android:textStyle="italic"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/NomAppli"
+        android:layout_alignStart="@+id/Pseudo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Pseudo :"
+        android:id="@+id/Pseudo"
+        android:layout_alignBottom="@+id/editPseudo"
+        android:layout_alignStart="@+id/Email" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:id="@+id/editPseudo"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/Accroche"
+        android:layout_alignStart="@+id/editMail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Email :"
+        android:id="@+id/Email"
+        android:layout_below="@+id/Pseudo"
+        android:layout_alignStart="@+id/Mdp"
+        android:layout_marginTop="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Mot de passe :"
+        android:id="@+id/Mdp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/Email"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Confirmation :"
+        android:id="@+id/MdpConf"
+        android:focusable="false"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/Mdp"
+        android:layout_alignEnd="@+id/Mdp" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:id="@+id/editMail"
+        android:layout_alignTop="@+id/Email"
+        android:layout_toEndOf="@+id/Mdp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:id="@+id/editMdp"
+        android:layout_above="@+id/MdpConf"
+        android:layout_alignStart="@+id/editMail" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:id="@+id/editMdpConf"
+        android:layout_alignBottom="@+id/MdpConf"
+        android:layout_alignStart="@+id/editMdp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="J&apos;accepte les termes d&apos;inscription"
+        android:id="@+id/Accepter"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/MdpConf"
+        android:layout_alignStart="@+id/MdpConf" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Terme d&apos;inscription"
+        android:id="@+id/Terme"
+        android:layout_below="@+id/Accepter"
+        android:layout_alignStart="@+id/editMdpConf"
+        android:layout_marginTop="10dp"
+        android:clickable="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inscription"
+        android:id="@+id/Inscription"
+        android:layout_below="@+id/Terme"
+        android:layout_alignEnd="@+id/NomAppli"
+        android:layout_marginTop="10dp" />
+
+</RelativeLayout>
