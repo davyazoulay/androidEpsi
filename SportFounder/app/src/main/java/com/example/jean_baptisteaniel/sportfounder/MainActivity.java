@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    private RequestQueue mRequestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mRequestQueue = Volley.newRequestQueue(this);
     }
 
 
