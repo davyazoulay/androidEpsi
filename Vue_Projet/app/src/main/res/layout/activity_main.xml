@@ -1,96 +1,33 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="Nom :" android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:id="@+id/Nom"
-        android:layout_marginTop="38dp"
-        android:layout_below="@+id/Titre"
-        android:layout_alignParentStart="true"
-        android:singleLine="false" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom Application"
+        android:id="@+id/NomApplication"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="34dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick=""
+        android:onClick="goFragment"
         android:text="Suivant"
-        android:id="@+id/button"
+        android:id="@+id/buttonSuite"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Profil"
-        android:id="@+id/Titre"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="25dp"
-        android:id="@+id/editNom"
-        android:layout_alignTop="@+id/Nom"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="25dp"
-        android:id="@+id/editPrenom"
-        android:layout_below="@+id/editNom"
-        android:layout_alignStart="@+id/editNom"
-        android:layout_marginTop="31dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Prénom :"
-        android:id="@+id/Prenom"
-        android:layout_alignTop="@+id/editPrenom"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Age :"
-        android:id="@+id/Age"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="25dp"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/editAge"
-        android:layout_alignBottom="@+id/Age"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Détail :"
-        android:id="@+id/Detail"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/Age"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_below="@+id/Detail"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/button" />
-
-
-</RelativeLayout>
+</LinearLayout>

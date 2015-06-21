@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/titles" android:layout_weight="1"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:name="android.app.ListFragment"
+        tools:layout="@layout/activity_main">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Profil"
+            android:id="@+id/Titre"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+    </fragment>
+
+    <TextView android:text="Nom :" android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:id="@+id/Nom"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/Titre"
+        android:layout_alignParentStart="true"
+        android:singleLine="false" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick=""
+        android:text="Suivant"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:id="@+id/editNom"
+        android:layout_alignTop="@+id/Nom"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:id="@+id/editPrenom"
+        android:layout_below="@+id/editNom"
+        android:layout_alignStart="@+id/editNom"
+        android:layout_marginTop="31dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Prénom :"
+        android:id="@+id/Prenom"
+        android:layout_alignTop="@+id/editPrenom"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Age :"
+        android:id="@+id/Age"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editAge"
+        android:layout_alignBottom="@+id/Age"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Détail :"
+        android:id="@+id/Detail"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/Age"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_below="@+id/Detail"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button"
+        android:background="#ffc8ffc4" />
+
+</LinearLayout>

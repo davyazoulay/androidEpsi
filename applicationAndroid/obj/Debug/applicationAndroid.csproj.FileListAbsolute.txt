@@ -47,3 +47,6 @@ C:\Users\DAVY\Desktop\EPSI\B3\ASP.NET\applicationAndroid\applicationAndroid\obj\
 C:\Users\Morkai\Desktop\androidEpsi\applicationAndroid\obj\Debug\applicationAndroid.csprojResolveAssemblyReference.cache
 C:\Users\Morkai\Desktop\androidEpsi\applicationAndroid\obj\Debug\applicationAndroid.dll
 C:\Users\Morkai\Desktop\androidEpsi\applicationAndroid\obj\Debug\applicationAndroid.pdb
+C:\Users\Sebastien\Desktop\androidEpsi\applicationAndroid\obj\Debug\applicationAndroid.csprojResolveAssemblyReference.cache
+C:\Users\Sebastien\Desktop\androidEpsi\applicationAndroid\obj\Debug\applicationAndroid.dll
+C:\Users\Sebastien\Desktop\androidEpsi\applicationAndroid\obj\Debug\applicationAndroid.pdb

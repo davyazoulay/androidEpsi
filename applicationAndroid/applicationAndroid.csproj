@@ -140,15 +140,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AssoNoteLieuController.cs" />
+    <Compile Include="Controllers\AssoNoteLieuxController.cs" />
+    <Compile Include="Controllers\ChatEntreUtilisateurController.cs" />
     <Compile Include="Controllers\ChatEntreUtilisateursController.cs" />
     <Compile Include="Controllers\GroupeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LieuController.cs" />
+    <Compile Include="Controllers\LieuxController.cs" />
+    <Compile Include="Controllers\MessagePublicationController.cs" />
     <Compile Include="Controllers\PublicationController.cs" />
     <Compile Include="Controllers\SportController.cs" />
+    <Compile Include="Controllers\SportsController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VilleController.cs" />
+    <Compile Include="Controllers\VillesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
