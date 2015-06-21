@@ -1,70 +1,53 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
 import android.app.Activity;
-import android.content.Context;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Button;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PlacesFragment.OnFragmentInteractionListener} interface
+ * {@link UpdateProfileFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PlacesFragment#newInstance} factory method to
+ * Use the {@link UpdateProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlacesFragment extends android.support.v4.app.Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_SECTION_NUMBER = "section_number";
+public class UpdateProfileFragment extends android.support.v4.app.Fragment  {
 
-    // TODO: Rename and change types of parameters
-    private String mParam;
 
+    private static int save;
     private OnFragmentInteractionListener mListener;
-
-
-    // Define a listener that responds to location updates
-
-
-// Register the listener with the Location Manager to receive location updates
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-
-
-     * @return A new instance of fragment PlacesFragment.
+     * @return A new instance of fragment UpdateProfileFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static PlacesFragment newInstance(int param) {
-        PlacesFragment fragment = new PlacesFragment();
+    public static UpdateProfileFragment newInstance (int n) {
+        UpdateProfileFragment fragment = new UpdateProfileFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, param);
+        save = n;
         fragment.setArguments(args);
         return fragment;
     }
 
-    public PlacesFragment() {
+
+    public UpdateProfileFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam = getArguments().getString(ARG_SECTION_NUMBER);
+
         }
     }
 
@@ -72,16 +55,33 @@ public class PlacesFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View mFragment = inflater.inflate(R.layout.fragment_places, container, false);
-        GPS gps = new GPS(mFragment.getContext());
-        if(gps.canGetLocation()){
-            double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
-            Toast.makeText(mFragment.getContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-        } else {
-            gps.showSettingsAlert();
-        }
+        View mFragment = inflater.inflate(R.layout.fragment_update_profile, container, false);
+        Button mSubmitButton = (Button) mFragment.findViewById(R.id.update_submit);
+        Button mCancelButton = (Button) mFragment.findViewById(R.id.update_cancel);
+        mSubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitUpdate();
+            }
+        });
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelUpdate();
+            }
+        });
         return mFragment;
+    }
+
+    private void cancelUpdate () {
+        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        ProfilesFragment mFragment = ProfilesFragment.newInstance(save);
+        transaction.replace(R.id.container, mFragment);
+        transaction.addToBackStack("cancelUpdate");
+        transaction.commit();
+    }
+    private void submitUpdate () {
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,14 +91,11 @@ public class PlacesFragment extends android.support.v4.app.Fragment {
         }
     }
 
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
             mListener = (OnFragmentInteractionListener) activity;
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -125,4 +122,5 @@ public class PlacesFragment extends android.support.v4.app.Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
 }

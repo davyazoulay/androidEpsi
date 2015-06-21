@@ -9,7 +9,8 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="lastname">Last name...</string>
+    <string name="firstname">First name...</string>
     <string name="user_name">Username</string>
     <string name="action_example">Example action</string>
 

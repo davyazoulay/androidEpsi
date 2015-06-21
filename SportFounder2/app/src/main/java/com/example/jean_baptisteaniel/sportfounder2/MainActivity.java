@@ -17,7 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, FriendsFragment.OnFragmentInteractionListener, GroupsFragment.OnFragmentInteractionListener, PlacesFragment.OnFragmentInteractionListener, ProfilesFragment.OnFragmentInteractionListener, SportsFragment.OnFragmentInteractionListener{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, FriendsFragment.OnFragmentInteractionListener, GroupsFragment.OnFragmentInteractionListener, PlacesFragment.OnFragmentInteractionListener, ProfilesFragment.OnFragmentInteractionListener, SportsFragment.OnFragmentInteractionListener, UpdateProfileFragment.OnFragmentInteractionListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.

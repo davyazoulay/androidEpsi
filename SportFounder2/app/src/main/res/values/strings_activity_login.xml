@@ -4,6 +4,9 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_password_new">Type your new password</string>
+    <string name="prompt_password_verify">Retype your password</string>
+    <string name="prompt_password_old">Type your old password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register_in">Register</string>
 

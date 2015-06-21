@@ -3,10 +3,15 @@ package com.example.jean_baptisteaniel.sportfounder2;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import static java.lang.Integer.parseInt;
 
 
 /**
@@ -59,7 +64,24 @@ public class ProfilesFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View mFragment = inflater.inflate(R.layout.fragment_profile, container, false);
+        Button mUpdateButton = (Button) mFragment.findViewById(R.id.update_profile);
+        mUpdateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchUpdate();
+            }
+        });
+        return mFragment;
+    }
+
+    private void launchUpdate () {
+        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        UpdateProfileFragment mFragment = UpdateProfileFragment.newInstance(0);
+        transaction.replace(R.id.container, mFragment);
+        transaction.addToBackStack("updateProfile");
+        transaction.commit();
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
