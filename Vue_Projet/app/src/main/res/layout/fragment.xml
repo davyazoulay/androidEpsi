@@ -4,21 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/titles" android:layout_weight="1"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:name="android.app.ListFragment"
-        tools:layout="@layout/activity_main">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Profil"
-            android:id="@+id/Titre"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-    </fragment>
-
     <TextView android:text="Nom :" android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:id="@+id/Nom"
