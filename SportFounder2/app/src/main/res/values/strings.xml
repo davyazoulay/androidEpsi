@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">SportFounder</string>
+
+    <string name="title_section1">Profil</string>
+    <string name="title_section2">Amis</string>
+    <string name="title_section3">Groupes</string>
+    <string name="title_section4">Sports</string>
+    <string name="title_section5">Lieux</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="lastname">Last name...</string>
+    <string name="firstname">First name...</string>
+    <string name="user_name">Username</string>
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Logout</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_register"> Register </string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_test">TestActivity</string>
+</resources>
