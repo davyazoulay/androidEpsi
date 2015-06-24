@@ -1,5 +1,7 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
+import org.json.JSONObject;
+
 import java.util.Date;
 
 /**
@@ -33,6 +35,7 @@ public class Utilisateur {
         this.ville = v;
         this.cp = cp;
     }
+
 
     public int getId () {
         return this.id;

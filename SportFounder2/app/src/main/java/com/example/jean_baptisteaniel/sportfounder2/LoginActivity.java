@@ -33,6 +33,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -41,6 +42,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+import static java.lang.Integer.parseInt;
 
 
 /**
@@ -279,22 +285,21 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         private final String mEmail;
         private final String mPassword;
-        public final Utilisateur mUser;
-        private boolean isUser;
-        private final TextView test = (TextView) findViewById(R.id.test);
+        private Utilisateur mUser;
+        private TextView mText = (TextView) findViewById(R.id.test);
+
+        public Utilisateur getUser () {
+            return mUser;
+        }
+
+        public void setUser (Utilisateur user) {
+            mUser = user;
+        }
 
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
             mUser = null;
-        }
-
-        public void setIsUser (boolean b) {
-            this.isUser = b;
-        }
-
-        public boolean getIsUser () {
-            return this.isUser;
         }
 
         @Override
@@ -304,34 +309,65 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
             HashMap<String, String> obj;
             obj = new HashMap<String, String>();
-            obj.put("Login", "davy");
-            obj.put("Mdp", "mdp");
+            obj.put("Login", mEmail);
+            obj.put("Mdp", mPassword);
+            obj.put("Id", "");
+            obj.put("Nom", "");
+            obj.put("Prenom", "");
+            obj.put("Email", "");
+            obj.put("DateNaussance", "");
+            obj.put("Pays", "");
+            obj.put("Nom", "");
+            obj.put("Ville", "");
+            obj.put("CP", "");
+            obj.put("Type", "");
             JSONObject user = new JSONObject(obj);
             final boolean[] result = {false};
-                JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user,
+            /*    JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    test.setText(response.toString());
-                                    Log.d("response", "good");
+                                    mText.setText(response.toString());
                                     result[0] = true;
-                                    onPostExecute(true);
+                                    Log.d("response", String.valueOf(result[0]));
+
                                 }
                                 catch (Exception e){
                                 }
                             }
                         }, new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        test.setText(error.toString());
-                        Log.d("Error", "error while getting user");
-                        // TODO Auto-generated method stub
+                            public void onErrorResponse(VolleyError error) {
+                                mText.setText(error.toString());
+                                Log.d("Error", "error while getting user");
+                                // TODO Auto-generated method stub
+                            }
+
+                });*/
+
+            RequestFuture<JSONObject> future = RequestFuture.newFuture();
+            JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user, future, future);
+            queue.add(request);
+            try {
+                JSONObject response = future.get(30, TimeUnit.SECONDS); // this will block (forever)
+                Log.d("get", response.toString());
+                String[] id= response.toString().split(":");
+                id = id[1].split(",");
+                    if (parseInt(id[0]) != 0) {
+                        result[0] = true;
+                    } else {
+                        result[0] = false;
                     }
 
-                });
-
-            return true;
+            } catch (InterruptedException e) {
+                // exception handling
+            } catch (ExecutionException e) {
+                // exception handling
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            }
+            return result[0];
         }
 
         @Override
@@ -339,14 +375,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             mAuthTask = null;
             showProgress(false);
             Log.d("Succes", success.toString());
-            Log.d("IsUser", String.valueOf(getIsUser()));
             if (success) {
                 finish();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
             } else {
-                test.setText("not success");
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mEmailView.setError(getString(R.string.error_invalid_email));
                 mPasswordView.requestFocus();
             }
         }
