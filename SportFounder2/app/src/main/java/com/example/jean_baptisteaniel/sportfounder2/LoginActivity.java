@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,7 +28,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -100,7 +112,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     }
 
     private void goRegister () {
-        Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+        //Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+        Intent i = new Intent(LoginActivity.this, TestActivity.class);
         startActivity(i);
     }
     /**
@@ -120,6 +133,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+
 
         boolean cancel = false;
         View focusView = null;
@@ -152,17 +166,19 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+
         }
     }
 
+
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return true;//email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return true;//password.length() > 4;
     }
 
     /**
@@ -263,32 +279,58 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         private final String mEmail;
         private final String mPassword;
+        public final Utilisateur mUser;
+        private boolean isUser;
+        private final TextView test = (TextView) findViewById(R.id.test);
 
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
+            mUser = null;
+        }
+
+        public void setIsUser (boolean b) {
+            this.isUser = b;
+        }
+
+        public boolean getIsUser () {
+            return this.isUser;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+            HashMap<String, String> obj;
+            obj = new HashMap<String, String>();
+            obj.put("Login", "davy");
+            obj.put("Mdp", "mdp");
+            JSONObject user = new JSONObject(obj);
+            final boolean[] result = {false};
+                JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    test.setText(response.toString());
+                                    Log.d("response", "good");
+                                    result[0] = true;
+                                    onPostExecute(true);
+                                }
+                                catch (Exception e){
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        test.setText(error.toString());
+                        Log.d("Error", "error while getting user");
+                        // TODO Auto-generated method stub
+                    }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
+                });
 
-            // TODO: register the new account here.
             return true;
         }
 
@@ -296,12 +338,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
+            Log.d("Succes", success.toString());
+            Log.d("IsUser", String.valueOf(getIsUser()));
             if (success) {
                 finish();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
             } else {
+                test.setText("not success");
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }

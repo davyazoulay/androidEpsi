@@ -11,6 +11,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
 import static java.lang.Integer.parseInt;
 
 
@@ -109,6 +113,8 @@ public class ProfilesFragment extends android.support.v4.app.Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

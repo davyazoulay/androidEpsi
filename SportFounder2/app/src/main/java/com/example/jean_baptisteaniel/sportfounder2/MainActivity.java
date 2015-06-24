@@ -83,9 +83,8 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
             case 4:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlacesFragment.newInstance(position + 1))
-                        .commit();
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(i);
                 break;
         }
 

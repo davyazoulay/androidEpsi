@@ -1,6 +1,7 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -8,10 +9,21 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Map;
 
 
 /**
@@ -22,7 +34,7 @@ import android.widget.Toast;
  * Use the {@link PlacesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlacesFragment extends android.support.v4.app.Fragment {
+public class PlacesFragment extends android.support.v4.app.Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -31,6 +43,8 @@ public class PlacesFragment extends android.support.v4.app.Fragment {
     private String mParam;
 
     private OnFragmentInteractionListener mListener;
+    private double mLat;
+    private double mLong;
 
 
     // Define a listener that responds to location updates
@@ -66,6 +80,7 @@ public class PlacesFragment extends android.support.v4.app.Fragment {
         if (getArguments() != null) {
             mParam = getArguments().getString(ARG_SECTION_NUMBER);
         }
+
     }
 
     @Override
@@ -73,14 +88,6 @@ public class PlacesFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View mFragment = inflater.inflate(R.layout.fragment_places, container, false);
-        GPS gps = new GPS(mFragment.getContext());
-        if(gps.canGetLocation()){
-            double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
-            Toast.makeText(mFragment.getContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-        } else {
-            gps.showSettingsAlert();
-        }
         return mFragment;
     }
 
@@ -110,6 +117,7 @@ public class PlacesFragment extends android.support.v4.app.Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
