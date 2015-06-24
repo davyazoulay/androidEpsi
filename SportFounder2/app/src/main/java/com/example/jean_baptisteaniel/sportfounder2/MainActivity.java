@@ -74,7 +74,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, GroupsFragment.newInstance(position + 1))
+                        .replace(R.id.container, GroupsListFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 3:

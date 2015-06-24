@@ -4,7 +4,50 @@
     tools:context="com.example.jean_baptisteaniel.sportfounder2.GroupsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="GROUPS" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="GROUPE NAME"
+            android:id="@+id/groupe"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Détail"
+            android:id="@+id/groupeDétail"
+            android:layout_gravity="left|top"
+            android:background="#fff9ffbe"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lieu"
+            android:id="@+id/groupeLieu"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="membres"
+            android:id="@+id/groupeMembres"
+            android:phoneNumber="false"
+            android:password="false"
+            android:layout_marginLeft="10dp" />
+
+    </LinearLayout>
 
 </FrameLayout>
