@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class GroupsListFragment extends android.support.v4.app.Fragment{
+public class GroupListFragment extends android.support.v4.app.Fragment{
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     // TODO: Rename and change types of parameters
@@ -33,7 +33,7 @@ public class GroupsListFragment extends android.support.v4.app.Fragment{
         return fragment;
     }
 
-    public GroupsListFragment() {
+    public GroupListFragment() {
         // Required empty public constructor
     }
 
@@ -49,7 +49,7 @@ public class GroupsListFragment extends android.support.v4.app.Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_groups, container, false);
+        return inflater.inflate(R.layout.fragment_group_list, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
