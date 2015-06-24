@@ -1,5 +1,7 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
+import android.content.DialogInterface;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,7 @@ import com.example.jean_baptisteaniel.sportfounder2.R;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private String[] mDataset;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mTextView1, mTextView2;
         public ImageView personPhoto;
         public ViewHolder(View v) {
@@ -31,7 +33,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             this.personPhoto.setImageResource(R.mipmap.ic_launcher);
 
         }
+
+        public interface OnItemClickListener {
+            public void onItemClick(View view , int position);
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            onItemClick(v, getPosition()); //OnItemClickListener mItemClickListener;
+        }
+
+
     }
+
+    public static void onItemClick(View view, int position){};
 
     public MyAdapter(String[] myDataset) {
         mDataset = myDataset;

@@ -21,6 +21,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="groupe"
             android:id="@+id/listgroupe" />
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Detail Groupe"
+            android:id="@+id/groupeDetail"
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
 

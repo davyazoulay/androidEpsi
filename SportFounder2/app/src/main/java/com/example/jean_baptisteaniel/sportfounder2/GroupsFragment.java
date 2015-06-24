@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +27,10 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam;
-
     private OnFragmentInteractionListener mListener;
+    private RecyclerView myRecycler;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private MyAdapter mAdapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -60,7 +65,19 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_group_list, container, false);
+        final View v = inflater.inflate(R.layout.fragment_friends, container, false);
+        final FragmentActivity c = getActivity();
+        myRecycler = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+        myRecycler.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(c);
+        myRecycler.setLayoutManager(mLayoutManager);
+        String[] myDataset = new String[10];
+        int nombre = 0;
+        final thread1 a = new thread1(nombre,myDataset);
+        a.start();
+        mAdapter = new MyAdapter(myDataset);
+        myRecycler.setAdapter(mAdapter);
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -87,6 +104,15 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public class thread1 extends Thread {
+        public thread1(int nombre, String[] Dataset) {
+            while (nombre < 10) {
+                Dataset[nombre] = "Ligne" + nombre;
+                nombre++;
+            }
+        }
     }
 
     /**
