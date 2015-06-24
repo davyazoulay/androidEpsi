@@ -1,13 +1,36 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 
 public class MapsActivity extends FragmentActivity {
 
@@ -15,18 +38,71 @@ public class MapsActivity extends FragmentActivity {
     private GPS mGps;
     private double mLat;
     private double mLong;
+    private Lieu mLieu;
+    private JSONArray mLieuList = new JSONArray();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         mGps = new GPS(this.getBaseContext());
-        if(mGps.canGetLocation()){
-            mLat = mGps.getLatitude();
-            mLong = mGps.getLongitude();
+        if (mGps.canGetLocation()) {
+            mLieu = new Lieu(mGps.getLatitude(), mGps.getLongitude());
         } else {
             mGps.showSettingsAlert();
         }
+        RequestQueue queue = Volley.newRequestQueue(MapsActivity.this);
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Lieu/getalllieux";
+        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
+            @Override
+            public void onResponse(JSONArray response) {
+                mLieuList = response;
+                if (mLieuList.length() != 0) {
+                    for (int i = 0; i < mLieuList.length(); i++) {
+                        JSONObject row = null;
+                        try {
+                            row = mLieuList.getJSONObject(i);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            float [] dist = new float[1];
+                            Location.distanceBetween(mLieu.getLat(), mLieu.getLon(), parseDouble(String.valueOf(row.get("Latitude"))), parseDouble(String.valueOf(row.get("Longitude"))), dist);
+                            Log.d("distance", String.valueOf(dist[0]));
+                            if (parseDouble(String.valueOf(dist[0]))/1000 <= 30) {
+                                addMarker(parseDouble(String.valueOf(row.get("Latitude"))), parseDouble(String.valueOf(row.get("Longitude"))), "other");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error: ", error.getMessage());
+            }
+        });
+
+// add the request object to the queue to be executed
+
+        queue.add(req);
+        List<Address> list = null;
+        try {
+            Geocoder geoCoder = new Geocoder(MapsActivity.this, Locale.getDefault());
+            ;
+            list = geoCoder.getFromLocation(mGps.getLatitude(), mGps.getLongitude(), 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Address address = null;
+        if (list != null & list.size() > 0) {
+            address = list.get(0);
+        }
+        mLieu.setCp(address.getPostalCode());
+        mLieu.setNom(address.getLocality());
+        mLieu.setDescription(address.getLocale().toString());
         setUpMapIfNeeded();
     }
 
@@ -78,6 +154,12 @@ public class MapsActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        this.addMarker(mLat, mLong, "Your position");
+        this.addMarker(mLieu.getLat(), mLieu.getLon(), mLieu.getDescription());
+        // Zoom in, animating the camera.
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLieu.getLat(), mLieu.getLon()), 1));
+        mMap.animateCamera(CameraUpdateFactory.zoomIn());
+// Zoom out to zoom level 10, animating with a duration of 2 seconds.
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+
     }
 }

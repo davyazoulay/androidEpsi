@@ -351,7 +351,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             queue.add(request);
             try {
                 JSONObject response = future.get(30, TimeUnit.SECONDS); // this will block (forever)
-                Log.d("get", response.toString());
                 String[] id= response.toString().split(":");
                 id = id[1].split(",");
                     if (parseInt(id[0]) != 0) {

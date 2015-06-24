@@ -25,6 +25,11 @@ public class Lieu {
         this.lon = lo;
     }
 
+    public Lieu (double la, double lo) {
+        this.lat = la;
+        this.lon = lo;
+    }
+
     public int getId() {
         return id;
     }
