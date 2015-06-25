@@ -47,7 +47,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     }
 
-    public static void onItemClick(View view, int position){};
+    public static void onItemClick(View view, int position){
+        listener();
+    }
+
+    public static void listener() {
+
+    }
 
     public MyAdapter(String[] myDataset) {
         mDataset = myDataset;

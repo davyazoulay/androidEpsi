@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class RegisterActivity extends ActionBarActivity {
 
+    private String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

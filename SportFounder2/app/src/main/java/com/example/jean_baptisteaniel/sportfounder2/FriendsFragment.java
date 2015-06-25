@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +75,19 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         final View v = inflater.inflate(R.layout.fragment_friends, container, false);
         final FragmentActivity c = getActivity();
         myRecycler = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+        myRecycler.addOnItemTouchListener(
+                new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        goProfil(view);
+                    }
+                }) {
+                    @Override
+                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                    }
+                }
+        );
         myRecycler.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(c);
         myRecycler.setLayoutManager(mLayoutManager);
@@ -83,6 +98,7 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         mAdapter = new MyAdapter(myDataset);
         myRecycler.setAdapter(mAdapter);
 
+
         //mAdapter.SetOnItemClickListener(new OnItemClickListener(); // solution tuto erreur build
 
         /*Button profilButton = (Button) this.getActivity().findViewById(R.id.goprofil);
@@ -92,8 +108,16 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.container, ProfilesFragment.newInstance(1)).commit();
             }
-        });*/ // solution créer en reprenant l'exemple de bouton pas d'erreur mais pointer null quand on run le OnclickListener
+        });*/ // solution crï¿½er en reprenant l'exemple de bouton pas d'erreur mais pointer null quand on run le OnclickListener
         return v;
+    }
+
+    private void goProfil (View v) {
+        Log.d("fuck", "fuck");
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.container, friendProfileFragment.newInstance(3), "goprofil"); //.newInstance(3), "profil_ami");
+        ft.addToBackStack("profilefromfriend");
+        ft.commit();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

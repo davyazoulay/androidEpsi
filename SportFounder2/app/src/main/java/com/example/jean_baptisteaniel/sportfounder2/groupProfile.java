@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,7 +20,7 @@ import android.view.ViewGroup;
  * Use the {@link GroupsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GroupsFragment extends android.support.v4.app.Fragment {
+public class groupProfile extends android.support.v4.app.Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -29,9 +28,6 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
     // TODO: Rename and change types of parameters
     private String mParam;
     private OnFragmentInteractionListener mListener;
-    private RecyclerView myRecycler;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private MyAdapter mAdapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -42,15 +38,15 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
      * @return A new instance of fragment GroupsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GroupsFragment newInstance(int param1) {
-        GroupsFragment fragment = new GroupsFragment();
+    public static groupProfile newInstance(int param1) {
+        groupProfile fragment = new groupProfile();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, param1);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public GroupsFragment() {
+    public groupProfile() {
         // Required empty public constructor
     }
 
@@ -66,40 +62,8 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View v = inflater.inflate(R.layout.fragment_friends, container, false);
-        final FragmentActivity c = getActivity();
-        myRecycler = (RecyclerView) v.findViewById(R.id.my_recycler_view);
-        myRecycler.addOnItemTouchListener(
-                new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        goGroup(view);
-                    }
-                }) {
-                    @Override
-                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                    }
-                }
-        );
-        myRecycler.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(c);
-        myRecycler.setLayoutManager(mLayoutManager);
-        String[] myDataset = new String[10];
-        int nombre = 0;
-        final thread1 a = new thread1(nombre,myDataset);
-        a.start();
-        mAdapter = new MyAdapter(myDataset);
-        myRecycler.setAdapter(mAdapter);
+        final View v = inflater.inflate(R.layout.fragment_blank, container, false);
         return v;
-    }
-
-    public void goGroup (View v) {
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, groupProfile.newInstance(3), "gogroup"); //.newInstance(3), "profil_ami");
-        ft.addToBackStack("profilefromgroup");
-        ft.commit();
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event

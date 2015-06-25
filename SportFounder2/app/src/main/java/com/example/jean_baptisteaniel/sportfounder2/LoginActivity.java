@@ -119,7 +119,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     private void goRegister () {
         //Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-        Intent i = new Intent(LoginActivity.this, TestActivity.class);
+        Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(i);
     }
     /**
