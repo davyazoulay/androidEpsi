@@ -5,6 +5,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="The profile of the group you just click here" />
+        android:text="The profile of the group you just click here"
+        android:id="@+id/group"/>
 
 </FrameLayout>

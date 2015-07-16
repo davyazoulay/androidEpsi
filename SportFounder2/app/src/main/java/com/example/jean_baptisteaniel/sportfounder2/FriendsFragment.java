@@ -18,6 +18,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static java.lang.Integer.parseInt;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +53,8 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
     private RecyclerView myRecycler;
     private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
+    private int id;
+    private JSONArray friends;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -79,7 +95,7 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
                 new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        goProfil(view);
+                        goProfil(view, position);
                     }
                 }) {
                     @Override
@@ -91,12 +107,36 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         myRecycler.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(c);
         myRecycler.setLayoutManager(mLayoutManager);
-        String[] myDataset = new String[10];
-        int nombre = 0;
-        final thread1 a = new thread1(nombre,myDataset);
-        a.start();
-        mAdapter = new MyAdapter(myDataset);
-        myRecycler.setAdapter(mAdapter);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Globals g = (Globals) getActivity().getApplication();
+        id = g.getUser_id();
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetListAmis/"+id;
+        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
+            @Override
+            public void onResponse(JSONArray response) {
+                friends = response;
+                String[] myDataset = new String[response.length()];
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        myDataset[i] = response.get(i).toString();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                mAdapter = new MyAdapter(myDataset);
+                myRecycler.setAdapter(mAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error: ", error.getMessage());
+            }
+        });
+
+// add the request object to the queue to be executed
+
+        queue.add(req);
+
 
 
         //mAdapter.SetOnItemClickListener(new OnItemClickListener(); // solution tuto erreur build
@@ -112,8 +152,25 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         return v;
     }
 
-    private void goProfil (View v) {
-        Log.d("fuck", "fuck");
+    private void goProfil (View v, int pos) {
+        String url = null;
+        Globals g = (Globals) getActivity().getApplication();
+        Log.e("friends", friends.toString());
+        JSONObject friend = null;
+        try {
+            friend = (JSONObject) friends.get(pos);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            Log.e("friend", String.valueOf(friend.get("Id")));
+            g.setCurrentObject((Integer) friend.get("Id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+// Add the request to the RequestQueue.
+
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, friendProfileFragment.newInstance(3), "goprofil"); //.newInstance(3), "profil_ami");
         ft.addToBackStack("profilefromfriend");

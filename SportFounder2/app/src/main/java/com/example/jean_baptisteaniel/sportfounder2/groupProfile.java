@@ -10,6 +10,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 
 /**
@@ -28,6 +38,7 @@ public class groupProfile extends android.support.v4.app.Fragment {
     // TODO: Rename and change types of parameters
     private String mParam;
     private OnFragmentInteractionListener mListener;
+    private TextView mText;
 
     /**
      * Use this factory method to create a new instance of
@@ -63,6 +74,27 @@ public class groupProfile extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_blank, container, false);
+        mText = (TextView) v.findViewById(R.id.group);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Globals g = (Globals) getActivity().getApplication();
+        int id = g.getCurrentObject();
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Groupe/GetGroupeById/"+id;
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        mText.setText(response.toString());
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+// Add the request to the RequestQueue.
+        queue.add(jsObjRequest);
         return v;
     }
 

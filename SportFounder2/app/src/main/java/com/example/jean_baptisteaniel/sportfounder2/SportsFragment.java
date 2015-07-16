@@ -1,12 +1,32 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
 import android.app.Activity;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static java.lang.Double.parseDouble;
 
 
 /**
@@ -26,6 +46,11 @@ public class SportsFragment extends android.support.v4.app.Fragment {
     private String mParam;
 
     private OnFragmentInteractionListener mListener;
+    private RecyclerView myRecycler;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private MyAdapter mAdapter;
+    private int id;
+    private JSONArray sports;
 
     /**
      * Use this factory method to create a new instance of
@@ -59,15 +84,85 @@ public class SportsFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sports, container, false);
+        final View v = inflater.inflate(R.layout.fragment_sports, container, false);
+        final FragmentActivity c = getActivity();
+        myRecycler = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+        myRecycler.addOnItemTouchListener(
+                new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        goSport(view, position);
+                    }
+                }) {
+                    @Override
+                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                    }
+                }
+        );
+        myRecycler.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(c);
+        myRecycler.setLayoutManager(mLayoutManager);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        Globals g = (Globals) getActivity().getApplication();
+        final int id = g.getUser_id();
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetMesSports/"+id;
+        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
+            @Override
+            public void onResponse(JSONArray response) {
+                sports = response;
+                String[] myDataset = new String[response.length()];
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        myDataset[i] = response.get(i).toString();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                mAdapter = new MyAdapter(myDataset);
+                myRecycler.setAdapter(mAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error: ", error.getMessage());
+            }
+        });
+
+// add the request object to the queue to be executed
+
+        queue.add(req);
+        return v;
     }
 
+    private void goSport (View v, int pos) {
+        String url = null;
+        Globals g = (Globals) getActivity().getApplication();
+
+        JSONObject current = null;
+        try {
+            current = (JSONObject) sports.get(pos);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            Log.e("sport", String.valueOf(current.get("Id")));
+            g.setCurrentObject((Integer) current.get("Id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.container, sportProfile.newInstance(4), "gosport"); //.newInstance(3), "profil_ami");
+        ft.addToBackStack("profilefromsport");
+        ft.commit();
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
+
 
     @Override
     public void onAttach(Activity activity) {

@@ -23,6 +23,31 @@ public class Utilisateur {
     public Utilisateur () {
 
     }
+    public Utilisateur (String l, String m, String n, String p, String ma) {
+        this.login = l;
+        this.mdp = m;
+        this.nom = n;
+        this.prenom = p;
+        this.mail = ma;
+        this.naissance = new Date();
+        this.pays = "";
+        this.ville = "";
+        this.cp = "";
+
+    }
+    public Utilisateur (int i, String l, String m, String n, String p, String ma) {
+        this.id = i;
+        this.login = l;
+        this.mdp = m;
+        this.nom = n;
+        this.prenom = p;
+        this.mail = ma;
+        this.naissance = new Date();
+        this.pays = "";
+        this.ville = "";
+        this.cp = "";
+
+    }
     public Utilisateur(int i, String l, String m, String n, String p, String ma, Date na, String pa, String v, String cp) {
         this.id = i;
         this.login = l;

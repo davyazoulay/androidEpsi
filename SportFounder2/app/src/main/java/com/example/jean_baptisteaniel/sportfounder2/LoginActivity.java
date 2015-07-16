@@ -6,9 +6,11 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -344,8 +346,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                                 // TODO Auto-generated method stub
                             }
 
-                });*/
 
+                });*/
             RequestFuture<JSONObject> future = RequestFuture.newFuture();
             JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user, future, future);
             queue.add(request);
@@ -354,6 +356,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 String[] id= response.toString().split(":");
                 id = id[1].split(",");
                     if (parseInt(id[0]) != 0) {
+                        Globals g = (Globals) getApplication();
+                        g.setUser_id(parseInt(id[0]));
                         result[0] = true;
                     } else {
                         result[0] = false;

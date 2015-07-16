@@ -5,22 +5,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -32,7 +30,7 @@ import org.json.JSONObject;
  * Use the {@link GroupsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GroupsFragment extends android.support.v4.app.Fragment {
+public class sportProfile extends android.support.v4.app.Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -40,11 +38,7 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
     // TODO: Rename and change types of parameters
     private String mParam;
     private OnFragmentInteractionListener mListener;
-    private RecyclerView myRecycler;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private MyAdapter mAdapter;
-    private JSONArray group;
-    private int id;
+    private TextView mText;
 
     /**
      * Use this factory method to create a new instance of
@@ -55,15 +49,15 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
      * @return A new instance of fragment GroupsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GroupsFragment newInstance(int param1) {
-        GroupsFragment fragment = new GroupsFragment();
+    public static sportProfile newInstance(int param1) {
+        sportProfile fragment = new sportProfile();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, param1);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public GroupsFragment() {
+    public sportProfile() {
         // Required empty public constructor
     }
 
@@ -79,78 +73,29 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View v = inflater.inflate(R.layout.fragment_friends, container, false);
-        final FragmentActivity c = getActivity();
-        myRecycler = (RecyclerView) v.findViewById(R.id.my_recycler_view);
-        myRecycler.addOnItemTouchListener(
-                new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        goGroup(view, position);
-                    }
-                }) {
-                    @Override
-                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                    }
-                }
-        );
-        myRecycler.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(c);
-        myRecycler.setLayoutManager(mLayoutManager);
+        final View v = inflater.inflate(R.layout.fragment_sport_profile, container, false);
+        mText = (TextView) v.findViewById(R.id.sportprofile);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Globals g = (Globals) getActivity().getApplication();
-        id = g.getUser_id();
-        String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetListGroupes/"+id;
-        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
-            @Override
-            public void onResponse(JSONArray response) {
-                group = response;
-                String[] myDataset = new String[response.length()];
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        myDataset[i] = response.get(i).toString();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        int id = g.getCurrentObject();
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Sport/GetSportById/"+id;
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        mText.setText(response.toString());
                     }
-                }
-                mAdapter = new MyAdapter(myDataset);
-                myRecycler.setAdapter(mAdapter);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Error: ", error.getMessage());
-            }
-        });
+                }, new Response.ErrorListener() {
 
-// add the request object to the queue to be executed
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
 
-        queue.add(req);
+                    }
+                });
+// Add the request to the RequestQueue.
+        queue.add(jsObjRequest);
         return v;
-    }
-
-    public void goGroup (View v, int pos) {
-        String url = null;
-        Globals g = (Globals) getActivity().getApplication();
-        Log.e("friends", group.toString());
-        JSONObject current = null;
-        try {
-            current = (JSONObject) group.get(pos);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            Log.e("group", String.valueOf(current.get("Id")));
-            g.setCurrentObject((Integer) current.get("Id"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, groupProfile.newInstance(3), "gogroup"); //.newInstance(3), "profil_ami");
-        ft.addToBackStack("profilefromgroup");
-        ft.commit();
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
