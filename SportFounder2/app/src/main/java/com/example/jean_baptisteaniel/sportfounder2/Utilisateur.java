@@ -9,136 +9,146 @@ import java.util.Date;
  */
 public class Utilisateur {
 
-    private int id;
-    private String login;
-    private String mdp;
-    private String nom;
-    private String prenom;
-    private String mail;
-    private Date naissance;
-    private String pays;
-    private String ville;
-    private String cp;
+    private int Id;
+    private String Login;
+    private String Mdp;
+    private String Nom;
+    private String Prenom;
+    private String Email;
+    private Date DateNaissance;
+    private String Pays;
+    private String Ville;
+    private String CP;
+    private int Type;
 
     public Utilisateur () {
 
     }
     public Utilisateur (String l, String m, String n, String p, String ma) {
-        this.login = l;
-        this.mdp = m;
-        this.nom = n;
-        this.prenom = p;
-        this.mail = ma;
-        this.naissance = new Date();
-        this.pays = "";
-        this.ville = "";
-        this.cp = "";
+        this.Login = l;
+        this.Mdp = m;
+        this.Nom = n;
+        this.Prenom = p;
+        this.Email = ma;
+        this.DateNaissance = new Date();
+        this.Pays = "";
+        this.Ville = "";
+        this.CP = "";
 
     }
     public Utilisateur (int i, String l, String m, String n, String p, String ma) {
-        this.id = i;
-        this.login = l;
-        this.mdp = m;
-        this.nom = n;
-        this.prenom = p;
-        this.mail = ma;
-        this.naissance = new Date();
-        this.pays = "";
-        this.ville = "";
-        this.cp = "";
+        this.Id = i;
+        this.Login = l;
+        this.Mdp = m;
+        this.Nom = n;
+        this.Prenom = p;
+        this.Email = ma;
+        this.DateNaissance = new Date();
+        this.Pays = "";
+        this.Ville = "";
+        this.CP = "";
 
     }
-    public Utilisateur(int i, String l, String m, String n, String p, String ma, Date na, String pa, String v, String cp) {
-        this.id = i;
-        this.login = l;
-        this.mdp = m;
-        this.nom = n;
-        this.prenom = p;
-        this.mail = ma;
-        this.naissance = na;
-        this.pays = pa;
-        this.ville = v;
-        this.cp = cp;
+    public Utilisateur(int id, String login, String mdp, String nom, String prenom, String email, Date dateNaissance, String pays, String ville, String cp, int type) {
+        this.Id = id;
+        this.Login = login;
+        this.Mdp = mdp;
+        this.Nom = nom;
+        this.Prenom = prenom;
+        this.Email = email;
+        this.DateNaissance = dateNaissance;
+        this.Pays = pays;
+        this.Ville = ville;
+        this.CP = cp;
+        this.Type = type;
     }
 
 
     public int getId () {
-        return this.id;
+        return this.Id;
     }
 
     public void setId (int i) {
-        this.id = i;
+        this.Id = i;
     }
 
     public String getLogin () {
-        return this.login;
+        return this.Login;
     }
 
     public void setLogin (String l) {
-        this.login = l;
+        this.Login = l;
     }
 
     public String getMdp () {
-        return this.mdp;
+        return this.Mdp;
     }
 
     public void setMdp (String m) {
-        this.mdp = m;
+        this.Mdp = m;
     }
 
     public String getNom() {
-        return nom;
+        return Nom;
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        this.Nom = nom;
     }
 
     public String getPrenom() {
-        return prenom;
+        return Prenom;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPrenom(String Prenom) {
+        this.Prenom = Prenom;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
-    public Date getNaissance() {
-        return naissance;
+    public Date getDateNaissance() {
+        return DateNaissance;
     }
 
-    public void setNaissance(Date naissance) {
-        this.naissance = naissance;
+    public void setDateNaissance(String DateNaissance) {
+        this.DateNaissance = null;
     }
 
     public String getPays() {
-        return pays;
+        return Pays;
     }
 
-    public void setPays(String pays) {
-        this.pays = pays;
+    public void setPays(String Pays) {
+        this.Pays = Pays;
     }
 
     public String getVille() {
-        return ville;
+        return Ville;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
+    public void setVille(String Ville) {
+        this.Ville = Ville;
     }
 
-    public String getCp() {
-        return cp;
+    public String getCP() {
+        return CP;
     }
 
-    public void setCp(String cp) {
-        this.cp = cp;
+    public void setCP(String CP) {
+        this.CP = CP;
+    }
+
+    public int getType() {
+        return Type;
+    }
+
+    public void setType(int type) {
+        Type = type;
     }
 }

@@ -37,11 +37,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -351,8 +355,24 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             RequestFuture<JSONObject> future = RequestFuture.newFuture();
             JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user, future, future);
             queue.add(request);
+
+
             try {
                 JSONObject response = future.get(30, TimeUnit.SECONDS); // this will block (forever)
+                Gson gson = new GsonBuilder()
+                        .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
+                Log.d("AAAAAAA", response.toString());
+                Date date = new Date();
+                Log.d("date", date.toString());
+                Utilisateur usrr = new Utilisateur();
+                try{
+                    usrr = gson.fromJson(response.toString(),Utilisateur.class);
+                    Log.d("hourra", usrr.getLogin());
+                }
+                catch (Exception e){
+                    Log.d("Exception",e.toString());
+                }
+
                 String[] id= response.toString().split(":");
                 id = id[1].split(",");
                     if (parseInt(id[0]) != 0) {
