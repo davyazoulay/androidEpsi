@@ -328,30 +328,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             obj.put("CP", "");
             obj.put("Type", "");
             JSONObject user = new JSONObject(obj);
-            final boolean[] result = {false};
-            /*    JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    mText.setText(response.toString());
-                                    result[0] = true;
-                                    Log.d("response", String.valueOf(result[0]));
+            boolean result = false;
 
-                                }
-                                catch (Exception e){
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                            public void onErrorResponse(VolleyError error) {
-                                mText.setText(error.toString());
-                                Log.d("Error", "error while getting user");
-                                // TODO Auto-generated method stub
-                            }
-
-
-                });*/
             RequestFuture<JSONObject> future = RequestFuture.newFuture();
             JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user, future, future);
             queue.add(request);
@@ -361,27 +339,21 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 JSONObject response = future.get(30, TimeUnit.SECONDS); // this will block (forever)
                 Gson gson = new GsonBuilder()
                         .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
-                Log.d("AAAAAAA", response.toString());
+
                 Date date = new Date();
-                Log.d("date", date.toString());
                 Utilisateur usrr = new Utilisateur();
                 try{
                     usrr = gson.fromJson(response.toString(),Utilisateur.class);
-                    Log.d("hourra", usrr.getLogin());
                 }
                 catch (Exception e){
                     Log.d("Exception",e.toString());
                 }
 
-                String[] id= response.toString().split(":");
-                id = id[1].split(",");
-                    if (parseInt(id[0]) != 0) {
-                        Globals g = (Globals) getApplication();
-                        g.setUser_id(parseInt(id[0]));
-                        result[0] = true;
-                    } else {
-                        result[0] = false;
-                    }
+                if(usrr.getId() != 0){
+                    Globals g = (Globals) getApplication();
+                    g.setUser(usrr);
+                    result = true;
+                }
 
             } catch (InterruptedException e) {
                 // exception handling
@@ -390,7 +362,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             } catch (TimeoutException e) {
                 e.printStackTrace();
             }
-            return result[0];
+            return result;
         }
 
         @Override

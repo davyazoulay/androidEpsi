@@ -47,9 +47,11 @@ public class ProfilesFragment extends android.support.v4.app.Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam;
-    private TextView mtext;
-    private Utilisateur mUser;
-    private TextView mPassword;
+    private TextView nomTV;
+    private TextView loginTV;
+    private TextView emailTV;
+    private TextView villeTV;
+    private Utilisateur user;
 
 
 
@@ -89,42 +91,26 @@ public class ProfilesFragment extends android.support.v4.app.Fragment {
         // Inflate the layout for this fragment
         View mFragment = inflater.inflate(R.layout.fragment_profile, container, false);
         Button mUpdateButton = (Button) mFragment.findViewById(R.id.update_profile);
-        mtext = (TextView) mFragment.findViewById(R.id.profile_email);
-        mPassword = (TextView) mFragment.findViewById(R.id.profile_password);
         mUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchUpdate();
             }
         });
-        RequestQueue queue = Volley.newRequestQueue(this.getActivity());
+
+        loginTV = (TextView) mFragment.findViewById(R.id.profile_login);
+        nomTV = (TextView) mFragment.findViewById(R.id.profile_nom);
+        emailTV = (TextView) mFragment.findViewById(R.id.profile_email);
+        villeTV = (TextView) mFragment.findViewById(R.id.profile_ville);
+
         Globals g = (Globals) getActivity().getApplication();
-        final int id = g.getUser_id();
-        String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetUserById/"+id;
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            mUser = new Utilisateur(id, response.get("Login").toString(), response.get("Mdp").toString(), response.get("Nom").toString(), response.get("Prenom").toString(), response.get("Login").toString());
-                            mtext.setText(mUser.getLogin());
-                            mPassword.setText(mUser.getMdp());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        Log.d("error", error.toString());
-                        // TODO Auto-generated method stub
-
-                    }
-                });
+        user = g.getUser();
+        loginTV.setText("Pseudo: "+user.getLogin());
+        nomTV.setText(user.getPrenom()+" "+user.getNom());
+        emailTV.setText("Mail: "+user.getEmail());
+        villeTV.setText("Ville: "+user.getVille());
 // Add the request to the RequestQueue.
-        queue.add(jsObjRequest);
         return mFragment;
     }
 

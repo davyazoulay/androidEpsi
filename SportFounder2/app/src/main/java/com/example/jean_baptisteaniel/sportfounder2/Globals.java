@@ -9,6 +9,7 @@ import org.json.JSONObject;
  */
 public class Globals extends Application {
     private int user_id = 0;
+    private Utilisateur user;
     private int other_id;
 
     public int getUser_id() {
@@ -25,5 +26,13 @@ public class Globals extends Application {
 
     public void setCurrentObject(int id) {
         this.other_id = id;
+    }
+
+    public Utilisateur getUser() {
+        return user;
+    }
+
+    public void setUser(Utilisateur user) {
+        this.user = user;
     }
 }

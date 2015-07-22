@@ -16,7 +16,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Email adress"
+            android:text="Nom"
+            android:id="@+id/profile_nom"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Pseudo"
+            android:id="@+id/profile_login"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Email"
             android:id="@+id/profile_email"
             android:layout_marginTop="16dp" />
 
@@ -24,10 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Password"
-            android:id="@+id/profile_password"
-            android:layout_weight="0.03"
-            android:password="true"
+            android:text="Ville"
+            android:id="@+id/profile_ville"
             android:layout_marginTop="16dp" />
 
         <Button
