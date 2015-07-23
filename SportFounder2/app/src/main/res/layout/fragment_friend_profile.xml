@@ -4,8 +4,37 @@
     tools:context="com.example.jean_baptisteaniel.sportfounder2.friendProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="friend you just click profile"
-        android:id="@+id/profile_friend_tet"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Nom"
+            android:id="@+id/profile_nom"
+            android:layout_marginTop="16dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Email"
+            android:id="@+id/profile_email"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ville"
+            android:id="@+id/profile_ville"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
 
 </FrameLayout>

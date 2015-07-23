@@ -12,54 +12,47 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/update_firstname"
+            android:inputType="textPersonName"
             android:hint="@string/firstname" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/update_lastname"
+            android:inputType="textPersonName"
             android:hint="@string/lastname" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/update_email"
+            android:inputType="textEmailAddress"
             android:hint="@string/prompt_email" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/update_oldpassword"
-            android:hint="@string/prompt_password_old" />
+            android:id="@+id/update_ville"
+            android:inputType="textPersonName"
+            android:hint="Ville" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/update_newpassword"
-            android:hint="@string/prompt_password_new" />
+            android:id="@+id/update_pays"
+            android:inputType="textPersonName"
+            android:hint="Pays" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/update_retypepassword"
-            android:hint="@string/prompt_password_verify" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="250dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal">
@@ -67,7 +60,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modifier profile"
+                android:text="Sauvegarder profil"
                 android:id="@+id/update_submit"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp" />
@@ -75,7 +68,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel"
+                android:text="Annuler"
                 android:id="@+id/update_cancel" />
         </LinearLayout>
 

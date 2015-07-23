@@ -18,6 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +40,9 @@ public class friendProfileFragment extends android.support.v4.app.Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam;
-    private TextView mText;
+    private TextView nomTV;
+    private TextView emailTV;
+    private TextView villeTV;
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -75,8 +79,13 @@ public class friendProfileFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_friend_profile, container, false);
-        mText = (TextView) v.findViewById(R.id.profile_friend_tet);
+        nomTV = (TextView) v.findViewById(R.id.profile_nom);
+        emailTV = (TextView) v.findViewById(R.id.profile_email);
+        villeTV = (TextView) v.findViewById(R.id.profile_ville);
+
         RequestQueue queue = Volley.newRequestQueue(getActivity());
+        final Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
         Globals g = (Globals) getActivity().getApplication();
         int id = g.getCurrentObject();
         String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetUserById/"+id;
@@ -84,7 +93,10 @@ public class friendProfileFragment extends android.support.v4.app.Fragment {
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        mText.setText(response.toString());
+                        Utilisateur user = gson.fromJson(response.toString(),Utilisateur.class);
+                        nomTV.setText(user.getPrenom()+" "+user.getNom());
+                        emailTV.setText("Mail: "+user.getEmail());
+                        villeTV.setText("Ville: "+user.getVille());
                     }
                 }, new Response.ErrorListener() {
 

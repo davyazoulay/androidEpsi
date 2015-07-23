@@ -141,6 +141,7 @@ public class MainActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            // a faire : essayer de se co avc variables locales enregistrées si ca marche pas faire ce qui suit
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
             return true;

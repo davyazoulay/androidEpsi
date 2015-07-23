@@ -24,11 +24,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Integer.parseInt;
 
@@ -111,18 +121,23 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         Globals g = (Globals) getActivity().getApplication();
         id = g.getUser_id();
         String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetListAmis/"+id;
+
         JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
             @Override
             public void onResponse(JSONArray response) {
-                friends = response;
-                String[] myDataset = new String[response.length()];
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        myDataset[i] = response.get(i).toString();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+
+                Gson gson = new GsonBuilder()
+                        .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
+                Type listType = new TypeToken<ArrayList<Utilisateur>>() {
+                }.getType();
+                List<Utilisateur> listUsers = gson.fromJson(response.toString(), listType);
+
+                String[] myDataset = new String[listUsers.size()];
+                for(int i =0; i<listUsers.size(); i++)
+                {
+                    myDataset[i] = listUsers.get(i).getPrenom();
                 }
+                friends = response;
                 mAdapter = new MyAdapter(myDataset);
                 myRecycler.setAdapter(mAdapter);
             }

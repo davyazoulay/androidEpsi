@@ -21,6 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
@@ -42,12 +44,10 @@ public class UpdateProfileFragment extends android.support.v4.app.Fragment  {
     private OnFragmentInteractionListener mListener;
 
     private EditText email;
-    private EditText mdp;
-    private EditText firstname;
-    private EditText lastname;
     private EditText prenom;
-    private EditText verifMdp;
-    private EditText oldMdp;
+    private EditText nom;
+    private EditText ville;
+    private EditText pays;
 
     private Activity mActi;
     /**
@@ -96,12 +96,21 @@ public class UpdateProfileFragment extends android.support.v4.app.Fragment  {
                 cancelUpdate();
             }
         });
-        lastname = (EditText) mFragment.findViewById(R.id.update_firstname);
-        firstname = (EditText) mFragment.findViewById(R.id.update_lastname);
+
+        Globals g = (Globals) getActivity().getApplication();
+        Utilisateur currentUser = g.getUser();
+
+        prenom = (EditText) mFragment.findViewById(R.id.update_firstname);
+        nom = (EditText) mFragment.findViewById(R.id.update_lastname);
         email = (EditText) mFragment.findViewById(R.id.update_email);
-        mdp = (EditText) mFragment.findViewById(R.id.update_newpassword);
-        oldMdp = (EditText) mFragment.findViewById(R.id.update_oldpassword);
-        verifMdp = (EditText) mFragment.findViewById(R.id.update_retypepassword);
+        ville = (EditText) mFragment.findViewById(R.id.update_ville);
+        pays = (EditText) mFragment.findViewById(R.id.update_pays);
+
+        prenom.setText(currentUser.getPrenom());
+        nom.setText(currentUser.getNom());
+        email.setText(currentUser.getEmail());
+        ville.setText(currentUser.getVille());
+        pays.setText(currentUser.getPays());
         return mFragment;
     }
 
@@ -113,30 +122,31 @@ public class UpdateProfileFragment extends android.support.v4.app.Fragment  {
         transaction.commit();
     }
     private void submitUpdate () {
-        HashMap<String, String> obj;
-        obj = new HashMap<String, String>();
-        mActi = this.getActivity();
         RequestQueue queue = Volley.newRequestQueue(this.getActivity());
-        Globals g = (Globals) getActivity().getApplication();
-        final int id = g.getUser_id();
-        Log.d("get", email.getText().toString());
-        obj.put("Id", String.valueOf(id));
-        obj.put("Login", email.getText().toString());
-        obj.put("Mdp", mdp.getText().toString());
-        obj.put("Nom", lastname.getText().toString());
-        obj.put("Prenom", firstname.getText().toString());
-        obj.put("Email", email.getText().toString());
-        obj.put("DateNaissance", "1993-04-26T00:00:00");
-        obj.put("Pays", "test");
-        obj.put("Ville", "test");
-        obj.put("CP", "test");
-        obj.put("Type", "1");
-        JSONObject user = new JSONObject(obj);
+        final Globals g = (Globals) getActivity().getApplication();
+        Utilisateur userUpdate = g.getUser();
+        userUpdate.setPrenom(prenom.getText().toString());
+        userUpdate.setNom(nom.getText().toString());
+        userUpdate.setEmail(email.getText().toString());
+        userUpdate.setVille(ville.getText().toString());
+        userUpdate.setPays(pays.getText().toString());
+
+        final Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
+        JSONObject user = new JSONObject();
+        try
+        {
+            String usrString = gson.toJson(g.getUser());
+            user = new JSONObject(usrString);
+        }
+        catch(Exception e){Log.d("Exception", e.toString());}
+
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/UpdateUser", user,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("response", String.valueOf(response));
+                        Utilisateur user = gson.fromJson(response.toString(), Utilisateur.class);
+                        g.setUser(user);
                         final FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.replace(R.id.container, ProfilesFragment.newInstance(1), "backprofil"); //.newInstance(3), "profil_ami");
                         ft.addToBackStack("backprofilfromupdate");
@@ -148,37 +158,6 @@ public class UpdateProfileFragment extends android.support.v4.app.Fragment  {
                 Log.d("Error", error.toString());
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(mActi);
                 alertDialog.setTitle("Error while registering");
-
-                // Setting Dialog Message
-                alertDialog.setMessage("You entered wrong values do you want to retry?");
-
-                // Setting Icon to Dialog
-                //alertDialog.setIcon(R.drawable.delete);
-
-                // On pressing Settings button
-                alertDialog.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int which) {
-                        email.setText("");
-                        mdp.setText("");
-                        lastname.setText("");
-                        firstname.setText("");
-                        verifMdp.setText("");
-                        oldMdp.setText("");
-                        dialog.dismiss();
-                    }
-                });
-                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.container, ProfilesFragment.newInstance(1), "backprofil"); //.newInstance(3), "profil_ami");
-                        ft.addToBackStack("backprofilfromupdate");
-                        ft.commit();
-                    }
-                });
-
-                // Showing Alert Message
-                alertDialog.show();
-                // TODO Auto-generated method stub
             }
 
         });

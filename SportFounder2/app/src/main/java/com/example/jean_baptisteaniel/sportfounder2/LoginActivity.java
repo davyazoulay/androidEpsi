@@ -5,12 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -39,20 +36,13 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
-import static java.lang.Integer.parseInt;
 
 
 /**
@@ -320,8 +310,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             JSONObject user = new JSONObject();
 
             Utilisateur userSignIn = new Utilisateur(mEmail, mPassword);
-            String usrString = gson.toJson(userSignIn);
-            try{user = new JSONObject(usrString);}
+            try
+            {
+                String usrString = gson.toJson(userSignIn);
+                user = new JSONObject(usrString);
+            }
             catch(Exception e){Log.d("Exception", e.toString());}
 
 
@@ -340,6 +333,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 if(usrr.getId() != 0){
                     Globals g = (Globals) getApplication();
                     g.setUser(usrr);
+                    g.setUser_id(usrr.getId());
                     result = true;
                 }
 
@@ -367,7 +361,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 startActivity(i);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mEmailView.setError(getString(R.string.error_invalid_email));
                 mPasswordView.requestFocus();
             }
         }
