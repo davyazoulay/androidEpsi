@@ -313,41 +313,29 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             // TODO: attempt authentication against a network service.
 
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-            HashMap<String, String> obj;
-            obj = new HashMap<String, String>();
-            obj.put("Login", mEmail);
-            obj.put("Mdp", mPassword);
-            obj.put("Id", "");
-            obj.put("Nom", "");
-            obj.put("Prenom", "");
-            obj.put("Email", "");
-            obj.put("DateNaussance", "");
-            obj.put("Pays", "");
-            obj.put("Nom", "");
-            obj.put("Ville", "");
-            obj.put("CP", "");
-            obj.put("Type", "");
-            JSONObject user = new JSONObject(obj);
+
+            Gson gson = new GsonBuilder()
+                    .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
+
+            JSONObject user = new JSONObject();
+
+            Utilisateur userSignIn = new Utilisateur(mEmail, mPassword);
+            String usrString = gson.toJson(userSignIn);
+            try{user = new JSONObject(usrString);}
+            catch(Exception e){Log.d("Exception", e.toString());}
+
+
             boolean result = false;
 
             RequestFuture<JSONObject> future = RequestFuture.newFuture();
             JsonObjectRequest request = new JsonObjectRequest("http://imout.montpellier.epsi.fr:8088/api/Utilisateur/Connexion", user, future, future);
             queue.add(request);
 
-
-            try {
+            try
+            {
                 JSONObject response = future.get(30, TimeUnit.SECONDS); // this will block (forever)
-                Gson gson = new GsonBuilder()
-                        .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
-
                 Date date = new Date();
-                Utilisateur usrr = new Utilisateur();
-                try{
-                    usrr = gson.fromJson(response.toString(),Utilisateur.class);
-                }
-                catch (Exception e){
-                    Log.d("Exception",e.toString());
-                }
+                Utilisateur usrr = gson.fromJson(response.toString(),Utilisateur.class);
 
                 if(usrr.getId() != 0){
                     Globals g = (Globals) getApplication();
@@ -361,6 +349,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 // exception handling
             } catch (TimeoutException e) {
                 e.printStackTrace();
+            }
+            catch (Exception e){
+                Log.d("Exception ",e.toString());
             }
             return result;
         }

@@ -47,8 +47,13 @@ public class Utilisateur {
         this.Pays = "";
         this.Ville = "";
         this.CP = "";
-
     }
+
+    public Utilisateur(String login, String mdp){
+        Login = login;
+        Mdp = mdp;
+    }
+
     public Utilisateur(int id, String login, String mdp, String nom, String prenom, String email, Date dateNaissance, String pays, String ville, String cp, int type) {
         this.Id = id;
         this.Login = login;
