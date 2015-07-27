@@ -1,5 +1,10 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -66,6 +71,27 @@ public class Utilisateur {
         this.Ville = ville;
         this.CP = cp;
         this.Type = type;
+    }
+
+    public static Utilisateur getUserFromJson(JSONObject json)
+    {
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
+        return gson.fromJson(json.toString(), Utilisateur.class);
+    }
+
+    public static JSONObject getJsonObjectFromUser(Utilisateur user){
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
+        JSONObject json = new JSONObject();
+        try
+        {
+            String usrString = gson.toJson(user);
+            json = new JSONObject(usrString);
+        }
+        catch(Exception e){
+            Log.d("Exception", e.toString());}
+        return json;
     }
 
 

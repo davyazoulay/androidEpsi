@@ -304,19 +304,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
 
-            Gson gson = new GsonBuilder()
-                    .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
-
-            JSONObject user = new JSONObject();
-
             Utilisateur userSignIn = new Utilisateur(mEmail, mPassword);
-            try
-            {
-                String usrString = gson.toJson(userSignIn);
-                user = new JSONObject(usrString);
-            }
-            catch(Exception e){Log.d("Exception", e.toString());}
 
+            JSONObject user = Utilisateur.getJsonObjectFromUser(userSignIn);
 
             boolean result = false;
 
@@ -328,7 +318,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             {
                 JSONObject response = future.get(30, TimeUnit.SECONDS); // this will block (forever)
                 Date date = new Date();
-                Utilisateur usrr = gson.fromJson(response.toString(),Utilisateur.class);
+                Utilisateur usrr = Utilisateur.getUserFromJson(response);
 
                 if(usrr.getId() != 0){
                     Globals g = (Globals) getApplication();
