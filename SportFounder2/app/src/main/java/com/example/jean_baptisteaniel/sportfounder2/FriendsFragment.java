@@ -5,40 +5,26 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+import com.example.jean_baptisteaniel.sportfounder2.Adapters.FriendsAdaptater;
+import com.example.jean_baptisteaniel.sportfounder2.Models.Utilisateur;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.Integer.parseInt;
 
@@ -62,9 +48,9 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
     private String mParam;
     private RecyclerView myRecycler;
     private RecyclerView.LayoutManager mLayoutManager;
-    private MyAdapter mAdapter;
-    private int id;
-    private JSONArray friends;
+    private FriendsAdaptater mAdapter;
+
+    private List<Utilisateur> listFriends;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -90,8 +76,6 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         if (getArguments() != null) {
             mParam = getArguments().getString(ARG_SECTION_NUMBER);
         }
-
-
     }
 
     @Override
@@ -100,7 +84,7 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_friends, container, false);
         final FragmentActivity c = getActivity();
-        myRecycler = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+        myRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_friend);
         myRecycler.addOnItemTouchListener(
                 new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -119,26 +103,15 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         myRecycler.setLayoutManager(mLayoutManager);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Globals g = (Globals) getActivity().getApplication();
-        id = g.getUser_id();
+        int id = g.getUser_id();
         String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetListAmis/"+id;
 
         JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
             @Override
             public void onResponse(JSONArray response) {
 
-                Gson gson = new GsonBuilder()
-                        .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
-                Type listType = new TypeToken<ArrayList<Utilisateur>>() {
-                }.getType();
-                List<Utilisateur> listUsers = gson.fromJson(response.toString(), listType);
-
-                String[] myDataset = new String[listUsers.size()];
-                for(int i =0; i<listUsers.size(); i++)
-                {
-                    myDataset[i] = listUsers.get(i).getPrenom();
-                }
-                friends = response;
-                mAdapter = new MyAdapter(myDataset);
+                listFriends = Utilisateur.getListUsersFromJson(response);
+                mAdapter = new FriendsAdaptater(listFriends);
                 myRecycler.setAdapter(mAdapter);
             }
         }, new Response.ErrorListener() {
@@ -148,39 +121,19 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
             }
         });
 
-// add the request object to the queue to be executed
-
+        // add the request object to the queue to be executed
         queue.add(req);
 
-
-
-        //mAdapter.SetOnItemClickListener(new OnItemClickListener(); // solution tuto erreur build
-
-        /*Button profilButton = (Button) this.getActivity().findViewById(R.id.goprofil);
-        profilButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, ProfilesFragment.newInstance(1)).commit();
-            }
-        });*/ // solution cr�er en reprenant l'exemple de bouton pas d'erreur mais pointer null quand on run le OnclickListener
         return v;
     }
 
     private void goProfil (View v, int pos) {
         String url = null;
         Globals g = (Globals) getActivity().getApplication();
-        Log.e("friends", friends.toString());
         JSONObject friend = null;
         try {
-            friend = (JSONObject) friends.get(pos);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            Log.e("friend", String.valueOf(friend.get("Id")));
-            g.setCurrentObject((Integer) friend.get("Id"));
-        } catch (JSONException e) {
+           g.setFriend_id(listFriends.get(pos).getId());
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -217,14 +170,6 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-    public class thread1 extends Thread {
-        public thread1(int nombre, String[] Dataset) {
-            while (nombre < 10) {
-                Dataset[nombre] = "Ligne" + nombre;
-                nombre++;
-            }
-        }
     }
 
     /**

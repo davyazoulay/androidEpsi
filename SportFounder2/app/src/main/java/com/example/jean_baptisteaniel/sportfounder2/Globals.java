@@ -2,7 +2,7 @@ package com.example.jean_baptisteaniel.sportfounder2;
 
 import android.app.Application;
 
-import org.json.JSONObject;
+import com.example.jean_baptisteaniel.sportfounder2.Models.Utilisateur;
 
 /**
  * Created by jean-baptisteaniel on 25/06/15.
@@ -10,7 +10,7 @@ import org.json.JSONObject;
 public class Globals extends Application {
     private int user_id = 0;
     private Utilisateur user;
-    private int other_id;
+    private int friend_id;
 
     public int getUser_id() {
         return user_id;
@@ -20,19 +20,19 @@ public class Globals extends Application {
         this.user_id = user_id;
     }
 
-    public int getCurrentObject() {
-        return other_id;
-    }
-
-    public void setCurrentObject(int id) {
-        this.other_id = id;
-    }
-
     public Utilisateur getUser() {
         return user;
     }
 
     public void setUser(Utilisateur user) {
         this.user = user;
+    }
+
+    public int getFriend_id() {
+        return friend_id;
+    }
+
+    public void setFriend_id(int friend_id) {
+        this.friend_id = friend_id;
     }
 }

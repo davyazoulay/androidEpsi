@@ -1,7 +1,6 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
 import android.app.Activity;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -14,19 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.jean_baptisteaniel.sportfounder2.Adapters.MyAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import static java.lang.Double.parseDouble;
 
 
 /**
@@ -86,7 +82,7 @@ public class SportsFragment extends android.support.v4.app.Fragment {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_sports, container, false);
         final FragmentActivity c = getActivity();
-        myRecycler = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+        myRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_sport);
         myRecycler.addOnItemTouchListener(
                 new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -147,7 +143,7 @@ public class SportsFragment extends android.support.v4.app.Fragment {
         }
         try {
             Log.e("sport", String.valueOf(current.get("Id")));
-            g.setCurrentObject((Integer) current.get("Id"));
+            g.setFriend_id((Integer) current.get("Id"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

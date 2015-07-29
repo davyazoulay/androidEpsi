@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.jean_baptisteaniel.sportfounder2.Adapters.MyAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,7 +82,7 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_friends, container, false);
         final FragmentActivity c = getActivity();
-        myRecycler = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+        myRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_groupe);
         myRecycler.addOnItemTouchListener(
                 new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -142,7 +143,7 @@ public class GroupsFragment extends android.support.v4.app.Fragment {
         }
         try {
             Log.e("group", String.valueOf(current.get("Id")));
-            g.setCurrentObject((Integer) current.get("Id"));
+            g.setFriend_id((Integer) current.get("Id"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.jean_baptisteaniel.sportfounder2.Models.Utilisateur;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -84,16 +79,14 @@ public class friendProfileFragment extends android.support.v4.app.Fragment {
         villeTV = (TextView) v.findViewById(R.id.profile_ville);
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        final Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss").create();
         Globals g = (Globals) getActivity().getApplication();
-        int id = g.getCurrentObject();
+        int id = g.getFriend_id();
         String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetUserById/"+id;
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Utilisateur user = gson.fromJson(response.toString(),Utilisateur.class);
+                        Utilisateur user = Utilisateur.getUserFromJson(response);
                         nomTV.setText(user.getPrenom()+" "+user.getNom());
                         emailTV.setText("Mail: "+user.getEmail());
                         villeTV.setText("Ville: "+user.getVille());
@@ -137,14 +130,6 @@ public class friendProfileFragment extends android.support.v4.app.Fragment {
         mListener = null;
     }
 
-    public class thread1 extends Thread {
-        public thread1(int nombre, String[] Dataset) {
-            while (nombre < 10) {
-                Dataset[nombre] = "Ligne" + nombre;
-                nombre++;
-            }
-        }
-    }
 
     /**
      * This interface must be implemented by activities that contain this

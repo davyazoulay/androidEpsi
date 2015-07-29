@@ -77,7 +77,7 @@ public class sportProfile extends android.support.v4.app.Fragment {
         mText = (TextView) v.findViewById(R.id.sportprofile);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Globals g = (Globals) getActivity().getApplication();
-        int id = g.getCurrentObject();
+        int id = g.getFriend_id();
         String url = "http://imout.montpellier.epsi.fr:8088/api/Sport/GetSportById/"+id;
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

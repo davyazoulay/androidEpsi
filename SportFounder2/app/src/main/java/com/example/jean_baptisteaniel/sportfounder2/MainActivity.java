@@ -17,7 +17,12 @@ import android.support.v4.widget.DrawerLayout;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, FriendsFragment.OnFragmentInteractionListener, GroupsFragment.OnFragmentInteractionListener, PlacesFragment.OnFragmentInteractionListener, ProfilesFragment.OnFragmentInteractionListener, SportsFragment.OnFragmentInteractionListener, UpdateProfileFragment.OnFragmentInteractionListener, friendProfileFragment.OnFragmentInteractionListener, groupProfile.OnFragmentInteractionListener, sportProfile.OnFragmentInteractionListener{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, FriendsFragment.OnFragmentInteractionListener,
+        GroupsFragment.OnFragmentInteractionListener, PlacesFragment.OnFragmentInteractionListener, ProfilesFragment.OnFragmentInteractionListener,
+        SportsFragment.OnFragmentInteractionListener, UpdateProfileFragment.OnFragmentInteractionListener, friendProfileFragment.OnFragmentInteractionListener,
+        groupProfile.OnFragmentInteractionListener, sportProfile.OnFragmentInteractionListener, ConversationFragment.OnFragmentInteractionListener,
+        ConversationDetailFragment.OnFragmentInteractionListener
+{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -86,6 +91,11 @@ public class MainActivity extends ActionBarActivity
                 Intent i = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(i);
                 break;
+            case 5:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, ConversationFragment.newInstance(position + 1))
+                        .commit();
+                break;
         }
 
 
@@ -107,6 +117,9 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 5:
                 mTitle = getString(R.string.title_section5);
+                break;
+            case 6:
+                mTitle = "Conversations";
                 break;
         }
     }
@@ -141,7 +154,7 @@ public class MainActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            // a faire : essayer de se co avc variables locales enregistrées si ca marche pas faire ce qui suit
+            // a faire : essayer de se co avc variables locales enregistrees si ca marche pas faire ce qui suit
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
             return true;
