@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Groupe Name"
-            android:id="@+id/groupe"
+            android:id="@+id/groupe_name"
             android:textStyle="bold|italic"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp" />
@@ -24,7 +24,7 @@
             android:layout_height="100dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Detail"
-            android:id="@+id/DetailGroupe"
+            android:id="@+id/groupe_description"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
@@ -35,15 +35,10 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Lieu"
-            android:id="@+id/LieuGroupe"
+            android:id="@+id/groupe_libelle"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_groupe"
-            android:scrollbars="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

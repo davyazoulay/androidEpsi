@@ -23,9 +23,9 @@ import org.json.JSONObject;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link GroupsFragment.OnFragmentInteractionListener} interface
+ * {@link GroupFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link GroupsFragment#newInstance} factory method to
+ * Use the {@link GroupFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class friendProfileFragment extends android.support.v4.app.Fragment {
@@ -46,7 +46,7 @@ public class friendProfileFragment extends android.support.v4.app.Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GroupsFragment.
+     * @return A new instance of fragment GroupFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static friendProfileFragment newInstance(int param1) {

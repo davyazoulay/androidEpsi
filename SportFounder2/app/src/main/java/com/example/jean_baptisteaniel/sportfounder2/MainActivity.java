@@ -18,12 +18,11 @@ import android.support.v4.widget.DrawerLayout;
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, FriendsFragment.OnFragmentInteractionListener,
-        GroupsFragment.OnFragmentInteractionListener, PlacesFragment.OnFragmentInteractionListener, ProfilesFragment.OnFragmentInteractionListener,
+        GroupFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener, PlacesFragment.OnFragmentInteractionListener, ProfilesFragment.OnFragmentInteractionListener,
         SportsFragment.OnFragmentInteractionListener, UpdateProfileFragment.OnFragmentInteractionListener, friendProfileFragment.OnFragmentInteractionListener,
         groupProfile.OnFragmentInteractionListener, sportProfile.OnFragmentInteractionListener, ConversationFragment.OnFragmentInteractionListener,
         ConversationDetailFragment.OnFragmentInteractionListener
 {
-
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -79,7 +78,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, GroupsFragment.newInstance(position + 1))
+                        .replace(R.id.container, GroupListFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 3:

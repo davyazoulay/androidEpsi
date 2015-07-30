@@ -3,31 +3,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.jean_baptisteaniel.sportfounder2.GroupListFragment">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_groupe"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <SearchView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchView"
-            android:text="Recherche"
-            android:layout_gravity="center_horizontal|top" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="groupe"
-            android:id="@+id/listgroupe" />
-        <Button
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:text="Detail Groupe"
-            android:id="@+id/groupeDetail"
-            android:layout_marginTop="16dp" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+     />
 
 </FrameLayout>
