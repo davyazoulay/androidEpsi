@@ -1,0 +1,33 @@
+﻿<div class="row">
+    <div class="col-md-4">
+        <a href="#" id="btn_createUser">Test WS CreateUser</a>
+    </div>
+</div>
+
+<script>
+    $("#btn_createUser").click(function () {
+            $.ajax({
+            url: '../api/Utilisateur/CreateUser/',
+            type: 'POST',
+            data: {
+                'Login': 'davytest',
+                'Mdp': 'monmdp',
+                'Prenom': 'Davy',
+                'Nom': 'Azoulay',
+                'Email': 'davy@mail.com',
+                'Date_naissance': '1993-04-26',
+                'Pays': 'France',
+                'Ville': 'Montpellier',
+                'Code_postal': '34000'
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert('Nouvel utilisateur créé: ' + data.Id);
+            },
+            error: function (request, error) {
+                alert("Erreur lors de la création de l'utilisateur");
+            }
+        })
+    });
+
+</script>

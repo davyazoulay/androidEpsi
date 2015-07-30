@@ -1,0 +1,102 @@
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.dll.config
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.pdb
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\Antlr3.Runtime.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\Newtonsoft.Json.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Net.Http.Formatting.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Helpers.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.WebHost.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Mvc.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Optimization.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Razor.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Razor.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\WebGrease.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\Newtonsoft.Json.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Net.Http.Formatting.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Helpers.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.WebHost.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Mvc.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Optimization.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.Razor.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Razor.xml
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\Antlr3.Runtime.pdb
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.csprojResolveAssemblyReference.cache
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.pdb
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\SportFounderLibrary.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\ws_sportFounder\bin\SportFounderLibrary.pdb
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.dll.config
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.pdb
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\Antlr3.Runtime.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\Newtonsoft.Json.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\SportFounderLibrary.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Net.Http.Formatting.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Helpers.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.WebHost.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Mvc.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Optimization.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Razor.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Razor.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\WebGrease.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\SportFounderLibrary.pdb
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\Newtonsoft.Json.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Net.Http.Formatting.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Helpers.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.WebHost.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Mvc.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Optimization.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.Razor.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Razor.xml
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\bin\Antlr3.Runtime.pdb
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.csprojResolveAssemblyReference.cache
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.pdb
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.csprojResolveAssemblyReference.cache
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\obj\Debug\ws_sportFounder.pdb
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.dll.config
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\ws_sportFounder.pdb
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\Antlr3.Runtime.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\Newtonsoft.Json.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\SportFounderLibrary.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Net.Http.Formatting.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Helpers.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.WebHost.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Mvc.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Optimization.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Razor.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Razor.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\WebGrease.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\SportFounderLibrary.pdb
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\Newtonsoft.Json.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Net.Http.Formatting.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Helpers.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Http.WebHost.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Mvc.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Optimization.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.Razor.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\System.Web.WebPages.Razor.xml
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\ws_sportFounder\bin\Antlr3.Runtime.pdb

@@ -1,0 +1,67 @@
+﻿///
+///FICHIER DE PROPRIETES CHARGE PAR LA CLASSE PROPERTIES.CS LORS DE L'INSTANCIATION D'UN OBJET DE CE TYPE.
+///
+
+///INFOS CONNEXION BASE DE DONNEE
+
+//Chaine de connexion SQL Server distante
+//CHAINE_CNX = "Data Source=sqlserver.montpellier.epsi.fr,4433;Initial Catalog=appli_android;Integrated Security=False;User ID=davy.azoulay;Password=epsi275KFG"
+
+// Chaine sur serveur IMOUT
+CHAINE_CNX = "Data Source=sqlserver.montpellier.epsi.fr,1433;Initial Catalog=appli_android;Integrated Security=False;User ID=davy.azoulay;Password=epsi275KFG"
+
+
+
+//NOM DES PROCEDURES STOCKEES
+
+// Utilisateur
+
+SP_GETUSERBYID = "getUserById"
+SP_CREATEUSER = "createUser"
+SP_UPDATEUSER = "updateUser"
+SP_GETUSERBYLOGIN = "getUserByLogin"
+SP_CHECKIFUSEREXISTS = "checkIfUserExists"
+SP_GETLISTAMIS = "getListAmis"
+SP_ADDSPORTFORUSER = "addSportForUser"
+SP_ADDFRIEND = "addFriend"
+SP_GETLISTGROUPES = "getListGroupes"
+
+
+// Ville
+
+SP_GETVILLEBYID = "getVilleById"
+SP_CREATEVILLE = "createVille"
+SP_CHECKIFVILLEEXISTS = "checkIfVilleExists"
+
+// Sport
+
+SP_GETSPORTBYID = "getSportById"
+SP_CREATESPORT = "createSport"
+SP_CHECKIFSPORTEXISTS = "checkIfSportExists"
+SP_GETSPORTSBYLIEU = "getSportsByLieu"
+SP_GETMESSPORTS = "getMesSports"
+
+
+// Lieu
+
+SP_GETLIEUBYID = "getLieuById"
+SP_CREATELIEU = "createLieu"
+SP_CHECKIFLIEUEXISTS = "checkIfLieuExists"
+SP_GETLIEUBYSPORT = "getLieuBySport"
+SP_GETALLLIEUX = "getAllLieux"
+
+//Groupe
+
+SP_GETGROUPEBYID = "getGroupeById"
+SP_CREATEGROUPE = "createGroupe"
+SP_CHECKIFGROUPEEXISTS = "checkIfGroupeExists"
+SP_GETLISTUSERS = "getListUsers"
+
+//Conversation
+
+SP_GETAMISENCONVERSATION = "getAmisEnConversation"
+SP_GETCONVERSATIONINTITULE = "getConversationintitule"
+SP_GETCONVERSATIONBYIDS = "getConversationByIds"
+SP_SENDMESSAGECHAT = "sendMessageChat"
+
+

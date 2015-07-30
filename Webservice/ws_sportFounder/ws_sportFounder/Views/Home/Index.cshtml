@@ -1,0 +1,23 @@
+﻿<div class="row">
+    <div class="col-md-4">
+        <a href="#" id="btn_createUser">Test WS CreateUser</a>
+    </div>
+</div>
+
+<script>
+    $("#btn_createUser").click(function () {
+            $.ajax({
+            url: '../api/Conversation/SendMessageChat/1/3',
+            type: 'POST',
+            data: '=ca va marcher !',
+            dataType: 'json',
+            success: function () {
+                alert('ok');
+            },
+            error: function (request, error) {
+                alert("Erreur");
+            }
+        })
+    });
+
+</script>

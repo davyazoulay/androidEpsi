@@ -1,0 +1,5 @@
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\bin\Release\SportFounderLibrary.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\bin\Release\SportFounderLibrary.pdb
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\obj\Release\SportFounderLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\obj\Release\SportFounderLibrary.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\obj\Release\SportFounderLibrary.pdb

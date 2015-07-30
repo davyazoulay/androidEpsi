@@ -1,0 +1,14 @@
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\bin\Debug\SportFounderLibrary.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\bin\Debug\SportFounderLibrary.pdb
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\obj\Debug\SportFounderLibrary.dll
+C:\Users\Davy\Dropbox\ws_sportFounder\SportFounderLibrary\obj\Debug\SportFounderLibrary.pdb
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\SportFounderLibrary\bin\Debug\SportFounderLibrary.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\SportFounderLibrary\bin\Debug\SportFounderLibrary.pdb
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\SportFounderLibrary\obj\Debug\SportFounderLibrary.dll
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\SportFounderLibrary\obj\Debug\SportFounderLibrary.pdb
+C:\Users\Davy\Desktop\EPSI\B3\ApplicationAndroid\SVN WS\ws_sportFounder\SportFounderLibrary\obj\Debug\SportFounderLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\SportFounderLibrary\bin\Debug\SportFounderLibrary.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\SportFounderLibrary\bin\Debug\SportFounderLibrary.pdb
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\SportFounderLibrary\obj\Debug\SportFounderLibrary.dll
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\SportFounderLibrary\obj\Debug\SportFounderLibrary.pdb
+C:\Users\Davy.Azoulay\Documents\AppAndroid\ws_sportFounder\SportFounderLibrary\obj\Debug\SportFounderLibrary.csprojResolveAssemblyReference.cache
