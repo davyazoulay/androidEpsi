@@ -19,10 +19,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.jean_baptisteaniel.sportfounder2.Adapters.MyAdapter;
+import com.example.jean_baptisteaniel.sportfounder2.Adapters.SportsAdapter;
+import com.example.jean_baptisteaniel.sportfounder2.Models.Sport;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 
 /**
@@ -34,32 +38,27 @@ import org.json.JSONObject;
  * create an instance of this fragment.
  */
 public class SportsFragment extends android.support.v4.app.Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    // TODO: Rename and change types of parameters
-    private String mParam;
 
     private OnFragmentInteractionListener mListener;
+
+    private String mParam;
     private RecyclerView myRecycler;
     private RecyclerView.LayoutManager mLayoutManager;
-    private MyAdapter mAdapter;
-    private int id;
-    private JSONArray sports;
-
+    private SportsAdapter mAdapter;
+    private List<Sport> listeSports;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-
-     * @return A new instance of fragment SportsFragment.
+     * @return A new instance of fragment FriendsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SportsFragment newInstance(int param) {
+    public static SportsFragment newInstance(int sectionNumber) {
         SportsFragment fragment = new SportsFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, param);
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
@@ -101,21 +100,14 @@ public class SportsFragment extends android.support.v4.app.Fragment {
         myRecycler.setLayoutManager(mLayoutManager);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Globals g = (Globals) getActivity().getApplication();
-        final int id = g.getUser_id();
+        int id = g.getUser_id();
         String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/GetMesSports/"+id;
+
         JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
             @Override
             public void onResponse(JSONArray response) {
-                sports = response;
-                String[] myDataset = new String[response.length()];
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        myDataset[i] = response.get(i).toString();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mAdapter = new MyAdapter(myDataset);
+                listeSports = Sport.getListeSportsFromJson(response);
+                mAdapter = new SportsAdapter(listeSports);
                 myRecycler.setAdapter(mAdapter);
             }
         }, new Response.ErrorListener() {
@@ -125,40 +117,35 @@ public class SportsFragment extends android.support.v4.app.Fragment {
             }
         });
 
-// add the request object to the queue to be executed
-
+        // add the request object to the queue to be executed
         queue.add(req);
+
         return v;
     }
 
     private void goSport (View v, int pos) {
         String url = null;
         Globals g = (Globals) getActivity().getApplication();
+        try {
+            g.setSport_id(listeSports.get(pos).getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        JSONObject current = null;
-        try {
-            current = (JSONObject) sports.get(pos);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            Log.e("sport", String.valueOf(current.get("Id")));
-            g.setFriend_id((Integer) current.get("Id"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+// Add the request to the RequestQueue.
+
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, sportProfile.newInstance(4), "gosport"); //.newInstance(3), "profil_ami");
-        ft.addToBackStack("profilefromsport");
+        ft.replace(R.id.container, SportDetailFragment.newInstance(6), "goSport"); // Jsais pas c quoi ce param(3)...
+        ft.addToBackStack("sport detail");
         ft.commit();
     }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -171,6 +158,7 @@ public class SportsFragment extends android.support.v4.app.Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
     }
 
     @Override

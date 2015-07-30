@@ -12,6 +12,7 @@ public class Globals extends Application {
     private Utilisateur user;
     private int friend_id;
     private int groupe_id;
+    private int sport_id;
 
     public int getUser_id() {
         return user_id;
@@ -43,5 +44,13 @@ public class Globals extends Application {
 
     public void setGroupe_id(int groupe_id) {
         this.groupe_id = groupe_id;
+    }
+
+    public int getSport_id() {
+        return sport_id;
+    }
+
+    public void setSport_id(int sport_id) {
+        this.sport_id = sport_id;
     }
 }

@@ -118,7 +118,6 @@ public class GroupListFragment extends android.support.v4.app.Fragment{
     private void goGroupe (View v, int pos) {
         String url = null;
         Globals g = (Globals) getActivity().getApplication();
-        JSONObject groupe = null;
         try {
             g.setGroupe_id(listGroupes.get(pos).getId());
         } catch (Exception e) {

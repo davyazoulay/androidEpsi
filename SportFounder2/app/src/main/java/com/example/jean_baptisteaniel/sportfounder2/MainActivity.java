@@ -20,7 +20,7 @@ public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, FriendsFragment.OnFragmentInteractionListener,
         GroupFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener, PlacesFragment.OnFragmentInteractionListener, ProfilesFragment.OnFragmentInteractionListener,
         SportsFragment.OnFragmentInteractionListener, UpdateProfileFragment.OnFragmentInteractionListener, friendProfileFragment.OnFragmentInteractionListener,
-        groupProfile.OnFragmentInteractionListener, sportProfile.OnFragmentInteractionListener, ConversationFragment.OnFragmentInteractionListener,
+        groupProfile.OnFragmentInteractionListener, SportDetailFragment.OnFragmentInteractionListener, ConversationFragment.OnFragmentInteractionListener,
         ConversationDetailFragment.OnFragmentInteractionListener
 {
     /**
