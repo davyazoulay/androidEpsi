@@ -42,7 +42,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             onItemClick(v, getPosition()); //OnItemClickListener mItemClickListener;
         }
 
-
     }
 
     public static void onItemClick(View view, int position){

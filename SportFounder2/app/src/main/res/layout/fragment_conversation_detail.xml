@@ -14,7 +14,7 @@
 
     <EditText
         android:layout_marginLeft="15dp"
-        android:layout_width="300dp"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:id="@+id/chat_input_message"
         android:layout_gravity="bottom" />

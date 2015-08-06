@@ -40,7 +40,6 @@ public class ConversationDetailAdapter extends RecyclerView.Adapter<Conversation
             onItemClick(v, getPosition()); //OnItemClickListener mItemClickListener;
         }
 
-
     }
 
     public static void onItemClick(View view, int position){

@@ -25,6 +25,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.jean_baptisteaniel.sportfounder2.Adapters.ConversationDetailAdapter;
 import com.example.jean_baptisteaniel.sportfounder2.Models.Conversation;
 import com.example.jean_baptisteaniel.sportfounder2.Models.MessageIntitule;
+import com.example.jean_baptisteaniel.sportfounder2.Models.MessageSimple;
+import com.example.jean_baptisteaniel.sportfounder2.Models.SingleString;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -91,6 +93,12 @@ public class ConversationDetailFragment extends android.support.v4.app.Fragment 
         final View v = inflater.inflate(R.layout.fragment_conversation_detail, container, false);
         final FragmentActivity c = getActivity();
         editText_msg = (EditText) v.findViewById(R.id.chat_input_message);
+        editText_msg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                myRecycler.scrollToPosition(conversation.getMessages().size()-1);
+            }
+        });
         button_send = (Button) v.findViewById(R.id.button_send_msg_chat);
         button_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,19 +107,7 @@ public class ConversationDetailFragment extends android.support.v4.app.Fragment 
             }
         });
         myRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_conversation_detail);
-        myRecycler.addOnItemTouchListener(
-                new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                    }
-                }) {
-                    @Override
-                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                    }
-                }
-        );
-        myRecycler.setHasFixedSize(true);
+        myRecycler.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(c);
         myRecycler.setLayoutManager(mLayoutManager);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -127,6 +123,7 @@ public class ConversationDetailFragment extends android.support.v4.app.Fragment 
                         conversation = Conversation.getConversationFromJson(response);
                         mAdapter = new ConversationDetailAdapter(conversation.getMessages());
                         myRecycler.setAdapter(mAdapter);
+                        myRecycler.scrollToPosition(conversation.getMessages().size()-1);
                     }
                 }, new Response.ErrorListener() {
 
@@ -149,31 +146,35 @@ public class ConversationDetailFragment extends android.support.v4.app.Fragment 
         Globals g = (Globals) getActivity().getApplication();
         int idFriend = g.getFriend_id();
         int myId = g.getUser_id();
-        String url = "http://imout.montpellier.epsi.fr:8088/api/Conversation/SendMessage/"+myId+"/"+idFriend;
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Conversation/SendMessageChat/"+myId+"/"+idFriend;
         JSONObject messageJson = new JSONObject();
+        SingleString singleString = new SingleString(editText_msg.getText().toString());
         try{
             Gson gson = new Gson();
-            messageJson = new JSONObject(gson.toJson(editText_msg.getText()));
+            messageJson = new JSONObject(gson.toJson(singleString));
         }
         catch (Exception e){
             Log.d("Exception", e.toString());
         }
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, messageJson, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, url, messageJson, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        Log.d("volleyerror", error.toString());
+                        Log.d("volleyerror", "pas d'erreur simplement requete sans objet en réponse");
                     }
                 });
-
         // add the request object to the queue to be executed
         queue.add(jsObjRequest);
+
+        Log.d("Conversation", "message envoyé");
+        conversation.getMessages().add(new MessageSimple(true, editText_msg.getText().toString(), Tools.getCurrentDate()));
+        editText_msg.setText("");
+        myRecycler.getAdapter().notifyItemInserted(conversation.getMessages().size()-1);
+        myRecycler.scrollToPosition(conversation.getMessages().size()-1);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
