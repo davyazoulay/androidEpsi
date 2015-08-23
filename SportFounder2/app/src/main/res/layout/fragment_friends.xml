@@ -7,7 +7,7 @@
     <SearchView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/searchView2"
+        android:id="@+id/searchViewFriend"
         android:text="@string/recherche"/>
 
     <android.support.v7.widget.RecyclerView
@@ -17,4 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter Amis"
+        android:id="@+id/add_friend"
+        android:layout_gravity="center_horizontal" />
 </FrameLayout>

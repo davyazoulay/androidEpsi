@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -83,6 +84,13 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_friends, container, false);
+        Button mAddFriendButton = (Button) v.findViewById(R.id.add_friend);
+        mAddFriendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchAddFriend();
+            }
+        });
         final FragmentActivity c = getActivity();
         myRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_friend);
         myRecycler.addOnItemTouchListener(
@@ -125,6 +133,15 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         queue.add(req);
 
         return v;
+    }
+
+    private void launchAddFriend () {
+        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        UpdateProfileFragment mFragment = UpdateProfileFragment.newInstance(0);
+        transaction.replace(R.id.container, mFragment);
+        transaction.addToBackStack("updateProfile");
+        transaction.commit();
+
     }
 
     private void goProfil (View v, int pos) {

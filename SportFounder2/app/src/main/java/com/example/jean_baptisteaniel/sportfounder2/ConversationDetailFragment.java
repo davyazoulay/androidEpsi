@@ -164,13 +164,13 @@ public class ConversationDetailFragment extends android.support.v4.app.Fragment 
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("volleyerror", "pas d'erreur simplement requete sans objet en réponse");
+                        Log.d("volleyerror", "pas d'erreur simplement requete sans objet en reponse");
                     }
                 });
         // add the request object to the queue to be executed
         queue.add(jsObjRequest);
 
-        Log.d("Conversation", "message envoyé");
+        Log.d("Conversation", "message envoye");
         conversation.getMessages().add(new MessageSimple(true, editText_msg.getText().toString(), Tools.getCurrentDate()));
         editText_msg.setText("");
         myRecycler.getAdapter().notifyItemInserted(conversation.getMessages().size()-1);

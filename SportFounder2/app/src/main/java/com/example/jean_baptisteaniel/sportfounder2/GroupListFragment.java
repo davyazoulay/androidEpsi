@@ -71,6 +71,13 @@ public class GroupListFragment extends android.support.v4.app.Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_group_list, container, false);
+        Button mAddGroupButton = (Button) v.findViewById(R.id.add_group);
+        mAddGroupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchAddGroup();
+            }
+        });
         final FragmentActivity c = getActivity();
         myRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_groupe);
         myRecycler.addOnItemTouchListener(
@@ -113,6 +120,15 @@ public class GroupListFragment extends android.support.v4.app.Fragment{
         queue.add(req);
 
         return v;
+    }
+
+    private void launchAddGroup () {
+        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        UpdateProfileFragment mFragment = UpdateProfileFragment.newInstance(0);
+        transaction.replace(R.id.container, mFragment);
+        transaction.addToBackStack("updateProfile");
+        transaction.commit();
+
     }
 
     private void goGroupe (View v, int pos) {

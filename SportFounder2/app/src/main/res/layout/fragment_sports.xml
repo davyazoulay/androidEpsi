@@ -3,11 +3,25 @@
     android:layout_height="match_parent"
     tools:context="com.example.jean_baptisteaniel.sportfounder2.SportsFragment">
 
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchViewSport"
+        android:text="@string/recherche"/>
+
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_sport"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter Sport"
+        android:id="@+id/add_sport"
+        android:layout_gravity="center_horizontal" />
 
 </FrameLayout>
