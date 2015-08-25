@@ -3,12 +3,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.jean_baptisteaniel.sportfounder2.SportsFragment">
 
-    <SearchView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchViewSport"
-        android:text="@string/recherche"/>
-
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_sport"
