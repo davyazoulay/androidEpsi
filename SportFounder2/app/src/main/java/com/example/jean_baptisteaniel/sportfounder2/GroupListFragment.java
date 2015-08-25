@@ -1,10 +1,8 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,7 +22,6 @@ import com.example.jean_baptisteaniel.sportfounder2.Adapters.GroupeListAdapter;
 import com.example.jean_baptisteaniel.sportfounder2.Models.Groupe;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -124,9 +121,9 @@ public class GroupListFragment extends android.support.v4.app.Fragment{
 
     private void launchAddGroup () {
         android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        UpdateProfileFragment mFragment = UpdateProfileFragment.newInstance(0);
+        AddGroupFragment mFragment = AddGroupFragment.newInstance(0);
         transaction.replace(R.id.container, mFragment);
-        transaction.addToBackStack("updateProfile");
+        transaction.addToBackStack("AddGroup");
         transaction.commit();
 
     }

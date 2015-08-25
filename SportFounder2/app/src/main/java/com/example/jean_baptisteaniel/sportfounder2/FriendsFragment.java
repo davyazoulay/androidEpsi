@@ -137,9 +137,9 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
 
     private void launchAddFriend () {
         android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        UpdateProfileFragment mFragment = UpdateProfileFragment.newInstance(0);
+        AddFriendFragment mFragment = AddFriendFragment.newInstance(0);
         transaction.replace(R.id.container, mFragment);
-        transaction.addToBackStack("updateProfile");
+        transaction.addToBackStack("AddFriend");
         transaction.commit();
 
     }
