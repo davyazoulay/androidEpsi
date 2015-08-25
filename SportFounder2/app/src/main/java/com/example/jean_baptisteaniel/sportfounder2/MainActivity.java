@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity
         GroupFragment.OnFragmentInteractionListener, GroupListFragment.OnFragmentInteractionListener, PlacesFragment.OnFragmentInteractionListener, ProfilesFragment.OnFragmentInteractionListener,
         SportsFragment.OnFragmentInteractionListener, UpdateProfileFragment.OnFragmentInteractionListener, friendProfileFragment.OnFragmentInteractionListener,
         groupProfile.OnFragmentInteractionListener, SportDetailFragment.OnFragmentInteractionListener, ConversationFragment.OnFragmentInteractionListener,
-        ConversationDetailFragment.OnFragmentInteractionListener
+        ConversationDetailFragment.OnFragmentInteractionListener,AddFriendFragment.OnFragmentInteractionListener,AddGroupFragment.OnFragmentInteractionListener,AddSportFragment.OnFragmentInteractionListener
 {
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.

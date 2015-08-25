@@ -19,13 +19,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.jean_baptisteaniel.sportfounder2.Adapters.MyAdapter;
 import com.example.jean_baptisteaniel.sportfounder2.Adapters.SportsAdapter;
 import com.example.jean_baptisteaniel.sportfounder2.Models.Sport;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -133,9 +130,9 @@ public class SportsFragment extends android.support.v4.app.Fragment {
 
     private void launchAddSport () {
         android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        UpdateProfileFragment mFragment = UpdateProfileFragment.newInstance(0);
+        AddSportFragment mFragment = AddSportFragment.newInstance(0);
         transaction.replace(R.id.container, mFragment);
-        transaction.addToBackStack("updateProfile");
+        transaction.addToBackStack("AddSport");
         transaction.commit();
 
     }
