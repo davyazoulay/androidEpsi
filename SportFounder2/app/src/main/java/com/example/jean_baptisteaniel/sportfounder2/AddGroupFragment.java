@@ -5,7 +5,10 @@ import android.app.AlertDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +20,20 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.jean_baptisteaniel.sportfounder2.Adapters.AddFriendAdapter;
+import com.example.jean_baptisteaniel.sportfounder2.Adapters.GroupeListAdapter;
+import com.example.jean_baptisteaniel.sportfounder2.Models.Groupe;
 import com.example.jean_baptisteaniel.sportfounder2.Models.Utilisateur;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.List;
 
 
 /**
@@ -40,7 +50,11 @@ public class AddGroupFragment extends android.support.v4.app.Fragment  {
     private static int save;
     private OnFragmentInteractionListener mListener;
 
-    private EditText group;
+    private EditText search;
+    private RecyclerView myRecycler;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private GroupeListAdapter mAdapter;
+    private List<Groupe> listeGroupes;
 
     private Activity mActi;
     /**
@@ -89,13 +103,53 @@ public class AddGroupFragment extends android.support.v4.app.Fragment  {
                 cancelUpdate();
             }
         });
+        search = (EditText) mFragment.findViewById(R.id.search_group);
 
-        Globals g = (Globals) getActivity().getApplication();
-        Utilisateur currentUser = g.getUser();
+        final FragmentActivity c = getActivity();
+        myRecycler = (RecyclerView) mFragment.findViewById(R.id.recycler_view_addGroupe);
+        myRecycler.addOnItemTouchListener(
+                new RecyclerItemClickListener(myRecycler.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        final Globals g = (Globals) getActivity().getApplication();
+                        int userId = g.getUser().getId();
+                        RequestQueue queue = Volley.newRequestQueue(getActivity());
+                        String url = "http://imout.montpellier.epsi.fr:8088/api/Groupe/JoinGroupe/" + userId + "/" + listeGroupes.get(position).getId();
 
-        group = (EditText) mFragment.findViewById(R.id.profile_login_group);
+                        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
 
-        group.setText(currentUser.getPrenom());
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("Error: ", error.getMessage());
+                            }
+                        });
+
+                        // add the request object to the queue to be executed
+                        queue.add(req);
+                        try {
+                            Thread.sleep(100);
+                            // Then do something meaningful...
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        goListGroupes();
+
+                    }
+                }) {
+                    @Override
+                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                    }
+                }
+        );
+        myRecycler.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(c);
+        myRecycler.setLayoutManager(mLayoutManager);
+
         return mFragment;
     }
 
@@ -107,7 +161,36 @@ public class AddGroupFragment extends android.support.v4.app.Fragment  {
         transaction.commit();
     }
     private void submitUpdate () {
-        
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String groupe = search.getText().toString();
+        final Globals g = (Globals) getActivity().getApplication();
+        int userId = g.getUser().getId();
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Groupe/SearchGroupe/"+userId+"/"+groupe;
+
+        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                listeGroupes = Groupe.getListGroupesFromJson(response);
+                mAdapter = new GroupeListAdapter(listeGroupes);
+                myRecycler.setAdapter(mAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error: ", error.getMessage());
+            }
+        });
+
+        // add the request object to the queue to be executed
+        queue.add(req);
+    }
+
+    private void goListGroupes () {
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.container, GroupListFragment.newInstance(3), "gogroupe"); //.newInstance(3), "profil_ami");
+        ft.addToBackStack("listegroupes");
+        ft.commit();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -148,5 +231,7 @@ public class AddGroupFragment extends android.support.v4.app.Fragment  {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
+
 
 }

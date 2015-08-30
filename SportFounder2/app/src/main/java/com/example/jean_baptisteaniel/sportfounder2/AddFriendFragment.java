@@ -114,7 +114,7 @@ public class AddFriendFragment extends android.support.v4.app.Fragment  {
                         int userId = g.getUser().getId();
                         RequestQueue queue = Volley.newRequestQueue(getActivity());
                         String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/AddFriend/"+ userId + "/" + listUsers.get(position).getId();
-                        Log.d("AAAAAAAAAA", url);
+
                         JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
                             @Override
                             public void onResponse(JSONArray response) {
@@ -130,12 +130,12 @@ public class AddFriendFragment extends android.support.v4.app.Fragment  {
                         // add the request object to the queue to be executed
                         queue.add(req);
                         try{
-                            Thread.sleep(500);
+                            Thread.sleep(100);
                             // Then do something meaningful...
                         }catch(InterruptedException e){
                             e.printStackTrace();
                         }
-                        goFriend(view,position);
+                        goListFriend();
 
                     }
                 }) {
@@ -149,12 +149,8 @@ public class AddFriendFragment extends android.support.v4.app.Fragment  {
         mLayoutManager = new LinearLayoutManager(c);
         myRecycler.setLayoutManager(mLayoutManager);
 
-        Globals g = (Globals) getActivity().getApplication();
-        Utilisateur currentUser = g.getUser();
-
         amis = (EditText) mFragment.findViewById(R.id.profile_login_friend);
 
-        //amis.setText(currentUser.getPrenom());
         return mFragment;
     }
 
@@ -168,8 +164,9 @@ public class AddFriendFragment extends android.support.v4.app.Fragment  {
     private void submitUpdate () {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String friend = amis.getText().toString();
-        Log.d("AAAAAAAAAAAAAAAAAAA", friend);
-        String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/SearchUser/"+friend;
+        final Globals g = (Globals) getActivity().getApplication();
+        int userId = g.getUser().getId();
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Utilisateur/SearchUser/"+userId+"/"+friend;
 
         JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
             @Override
@@ -190,15 +187,7 @@ public class AddFriendFragment extends android.support.v4.app.Fragment  {
         queue.add(req);
     }
 
-    private void goFriend (View v, int pos) {
-        String url = null;
-        Globals g = (Globals) getActivity().getApplication();
-        JSONObject friend = null;
-        try {
-            g.setFriend_id(listUsers.get(pos).getId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void goListFriend () {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.container, FriendsFragment.newInstance(3), "gofriend"); //.newInstance(3), "profil_ami");
         ft.addToBackStack("friendfromAddfriend");

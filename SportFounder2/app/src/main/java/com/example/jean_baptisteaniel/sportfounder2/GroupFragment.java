@@ -78,6 +78,13 @@ public class GroupFragment extends android.support.v4.app.Fragment {
         nameTV = (TextView) v.findViewById(R.id.groupe_name);
         descriptionTV = (TextView) v.findViewById(R.id.groupe_description);
         libelleTV = (TextView) v.findViewById(R.id.groupe_libelle);
+        Button quit_group_button = (Button) v.findViewById(R.id.button_quit_group);
+        quit_group_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quitGroup();
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Globals g = (Globals) getActivity().getApplication();
@@ -104,6 +111,46 @@ public class GroupFragment extends android.support.v4.app.Fragment {
 // Add the request to the RequestQueue.
         queue.add(jsObjRequest);
         return v;
+    }
+
+    private void quitGroup()
+    {
+        final Globals g = (Globals) getActivity().getApplication();
+        int user_id = g.getUser_id();
+        int group_id = g.getGroupe_id();
+
+        RequestQueue queue = Volley.newRequestQueue(this.getActivity());
+        String url = "http://imout.montpellier.epsi.fr:8088/api/Groupe/QuitGroupe/"+user_id+"/"+group_id;
+        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray> () {
+            @Override
+            public void onResponse(JSONArray response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error: ", error.getMessage());
+            }
+        });
+
+        // add the request object to the queue to be executed
+        queue.add(req);
+
+        try{
+            Thread.sleep(100);
+            // Then do something meaningful...
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        goListGroupes();
+
+    }
+
+    private void goListGroupes () {
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.container, GroupListFragment.newInstance(3), "golisteGroupes"); //.newInstance(3), "profil_ami");
+        ft.addToBackStack("listeGroupes");
+        ft.commit();
     }
 
 

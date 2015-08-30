@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:id="@+id/profile_login_group"
+            android:id="@+id/search_group"
             android:inputType="textPersonName"
             android:hint="Nom du Groupe" />
         <LinearLayout
@@ -37,6 +37,13 @@
                 android:text="Annuler"
                 android:id="@+id/update_cancel_group" />
         </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_addGroupe"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp" />
 
     </LinearLayout>
 </FrameLayout>
