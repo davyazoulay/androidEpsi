@@ -19,7 +19,7 @@
             android:text="Nom"
             android:id="@+id/profile_nom"
             android:layout_marginTop="16dp"
-            android:textColor="#ff2936"
+            style="@style/Base.TextAppearance.AppCompat.Display1"
             android:textStyle="bold" />
 
         <TextView
@@ -29,8 +29,7 @@
             android:text="Pseudo"
             android:id="@+id/profile_login"
             android:layout_marginTop="16dp"
-            android:textColor="#ff2936"
-            android:textStyle="bold" />
+            style="@style/Base.TextAppearance.AppCompat.Display1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,8 +38,7 @@
             android:text="Email"
             android:id="@+id/profile_email"
             android:layout_marginTop="16dp"
-            android:textColor="#ff2936"
-            android:textStyle="bold" />
+            style="@style/Base.TextAppearance.AppCompat.Display1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,8 +47,7 @@
             android:text="Ville"
             android:id="@+id/profile_ville"
             android:layout_marginTop="16dp"
-            android:textColor="#ff2936"
-            android:textStyle="bold" />
+            style="@style/Base.TextAppearance.AppCompat.Display1" />
 
         <Button
             android:layout_width="wrap_content"
@@ -58,6 +55,7 @@
             android:text="Modifier profil"
             android:id="@+id/update_profile"
             android:layout_gravity="center_horizontal"
-            android:textColor="#ff2936" />
+            style="@style/Base.TextAppearance.AppCompat.Menu"
+            android:layout_marginTop="16dp" />
     </LinearLayout>
 </FrameLayout>

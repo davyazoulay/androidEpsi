@@ -17,7 +17,9 @@
             android:id="@+id/groupe_name"
             android:textStyle="bold|italic"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            style="@style/Base.TextAppearance.AppCompat.Display1"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:layout_width="300dp"
@@ -28,7 +30,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
-            android:background="#fffff9e2" />
+            android:background="#fffff9e2"
+            style="@style/Base.ThemeOverlay.AppCompat.Dark"
+            android:textStyle="italic" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,7 +41,10 @@
             android:text="Lieu"
             android:id="@+id/groupe_libelle"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            style="@style/Base.TextAppearance.AppCompat.Display1"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold" />
 
         <Button
             android:layout_width="wrap_content"

@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.jean_baptisteaniel.sportfounder2.RegisterActivity">
+    tools:context="com.example.jean_baptisteaniel.sportfounder2.RegisterActivity"
+    android:background="#375cff">
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,7 +18,10 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/firstname"
-            android:hint="@string/firstname" />
+            android:hint="@string/firstname"
+            android:layout_marginBottom="10dp"
+            android:textStyle="italic"
+            android:layout_marginTop="10dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -25,14 +29,18 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/lastname"
-            android:hint="@string/lastname" />
+            android:hint="@string/lastname"
+            android:layout_marginBottom="10dp"
+            android:textStyle="italic" />
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email_register"
             android:inputType="textEmailAddress"
-            android:hint="@string/prompt_email" />
+            android:hint="@string/prompt_email"
+            android:layout_marginBottom="10dp"
+            android:textStyle="italic" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -40,7 +48,9 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/password_register"
-            android:hint="@string/prompt_password" />
+            android:hint="@string/prompt_password"
+            android:layout_marginBottom="10dp"
+            android:textStyle="italic" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -48,13 +58,16 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/verify_password"
-            android:hint="@string/prompt_password_verify" />
+            android:hint="@string/prompt_password_verify"
+            android:layout_marginBottom="10dp"
+            android:textStyle="italic" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp">
 
             <Button
                 android:layout_width="wrap_content"

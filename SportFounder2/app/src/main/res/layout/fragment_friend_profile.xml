@@ -16,7 +16,9 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Nom"
             android:id="@+id/profile_nom"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            style="@style/Base.TextAppearance.AppCompat.Display1"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -25,7 +27,9 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Email"
             android:id="@+id/profile_email"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:textStyle="italic" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,13 +37,15 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Ville"
             android:id="@+id/profile_ville"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            style="@style/Base.TextAppearance.AppCompat.Large" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Retirer de la liste d'amis"
-            android:id="@+id/button_delete_friend" />
+            android:id="@+id/button_delete_friend"
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
 

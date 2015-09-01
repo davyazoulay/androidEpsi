@@ -15,7 +15,9 @@
             android:ems="10"
             android:id="@+id/update_firstname"
             android:inputType="textPersonName"
-            android:hint="@string/firstname" />
+            android:hint="@string/firstname"
+            android:layout_marginTop="10dp"
+            android:textStyle="italic" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -23,7 +25,9 @@
             android:ems="10"
             android:id="@+id/update_lastname"
             android:inputType="textPersonName"
-            android:hint="@string/lastname" />
+            android:hint="@string/lastname"
+            android:layout_marginTop="10dp"
+            android:textStyle="italic" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -31,7 +35,9 @@
             android:ems="10"
             android:id="@+id/update_email"
             android:inputType="textEmailAddress"
-            android:hint="@string/prompt_email" />
+            android:hint="@string/prompt_email"
+            android:layout_marginTop="10dp"
+            android:textStyle="italic" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -39,7 +45,9 @@
             android:ems="10"
             android:id="@+id/update_ville"
             android:inputType="textPersonName"
-            android:hint="Ville" />
+            android:hint="Ville"
+            android:layout_marginTop="10dp"
+            android:textStyle="italic" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -47,14 +55,16 @@
             android:ems="10"
             android:id="@+id/update_pays"
             android:inputType="textPersonName"
-            android:hint="Pays" />
+            android:hint="Pays"
+            android:layout_marginTop="10dp"
+            android:textStyle="italic" />
 
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal">
 
             <Button

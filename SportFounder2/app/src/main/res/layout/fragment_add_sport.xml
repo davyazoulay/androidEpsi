@@ -15,12 +15,15 @@
             android:ems="10"
             android:id="@+id/profile_login_sport"
             android:inputType="textPersonName"
-            android:hint="Nom du Sport" />
+            android:hint="Nom du Sport"
+            android:layout_marginTop="10dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textStyle="italic" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal">
 
             <Button
