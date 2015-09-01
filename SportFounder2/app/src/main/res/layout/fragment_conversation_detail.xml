@@ -3,6 +3,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.jean_baptisteaniel.sportfounder2.ConversationDetailFragment">
 
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_conversation_detail"
         android:scrollbars="vertical"

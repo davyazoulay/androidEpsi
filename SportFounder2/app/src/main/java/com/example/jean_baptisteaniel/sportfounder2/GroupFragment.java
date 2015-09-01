@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,12 +23,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.jean_baptisteaniel.sportfounder2.Adapters.FriendsAdaptater;
+import com.example.jean_baptisteaniel.sportfounder2.Adapters.GridUsersAdaptater;
 import com.example.jean_baptisteaniel.sportfounder2.Adapters.MyAdapter;
 import com.example.jean_baptisteaniel.sportfounder2.Models.Groupe;
+import com.example.jean_baptisteaniel.sportfounder2.Models.Utilisateur;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 
 /**
@@ -47,7 +53,10 @@ public class GroupFragment extends android.support.v4.app.Fragment {
     private TextView descriptionTV;
     private TextView libelleTV;
     private OnFragmentInteractionListener mListener;
-
+    private RecyclerView myRecycler;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private GridUsersAdaptater mAdapter;
+    private List<Utilisateur> listUsers;
 
 
     public static GroupFragment newInstance(int param1) {
@@ -86,6 +95,12 @@ public class GroupFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        final FragmentActivity c = getActivity();
+        myRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_grid_group);
+        myRecycler.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(c);
+        myRecycler.setLayoutManager(new GridLayoutManager(getActivity(),4));
+
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         Globals g = (Globals) getActivity().getApplication();
         int id = g.getGroupe_id();
@@ -110,6 +125,27 @@ public class GroupFragment extends android.support.v4.app.Fragment {
                 });
 // Add the request to the RequestQueue.
         queue.add(jsObjRequest);
+
+        RequestQueue queue2 = Volley.newRequestQueue(getActivity());
+        String url2 = "http://imout.montpellier.epsi.fr:8088/api/Groupe/GetListUsers/"+id;
+
+        JsonArrayRequest req = new JsonArrayRequest(url2, new Response.Listener<JSONArray> () {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                listUsers = Utilisateur.getListUsersFromJson(response);
+                mAdapter = new GridUsersAdaptater(listUsers);
+                myRecycler.setAdapter(mAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error: ", error.getMessage());
+            }
+        });
+
+        // add the request object to the queue to be executed
+        queue.add(req);
         return v;
     }
 
