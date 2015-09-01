@@ -5,84 +5,84 @@ package com.example.jean_baptisteaniel.sportfounder2.Models;
  */
 public class Lieu {
 
-    private int id;
-    private String nom;
-    private String libelle;
-    private String description;
-    private String cp;
-    private double lat;
-    private double lon;
+    private int Id;
+    private String Nom;
+    private String Libelle;
+    private String Description;
+    private String Cp;
+    private double Lat;
+    private double Lon;
 
     public Lieu () {}
 
     public Lieu (int i, String n, String l, String d, String c, double la, double lo) {
-        this.id = i;
-        this.nom = n;
-        this.libelle = n;
-        this.description = d;
-        this.cp = c;
-        this.lat = la;
-        this.lon = lo;
+        this.Id = i;
+        this.Nom = n;
+        this.Libelle = n;
+        this.Description = d;
+        this.Cp = c;
+        this.Lat = la;
+        this.Lon = lo;
     }
 
     public Lieu (double la, double lo) {
-        this.lat = la;
-        this.lon = lo;
+        this.Lat = la;
+        this.Lon = lo;
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getNom() {
-        return nom;
+        return Nom;
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        this.Nom = nom;
     }
 
     public String getLibelle() {
-        return libelle;
+        return Libelle;
     }
 
     public void setLibelle(String libelle) {
-        this.libelle = libelle;
+        this.Libelle = libelle;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.Description = description;
     }
 
     public String getCp() {
-        return cp;
+        return Cp;
     }
 
     public void setCp(String cp) {
-        this.cp = cp;
+        this.Cp = cp;
     }
 
     public double getLat() {
-        return lat;
+        return Lat;
     }
 
     public void setLat(double lat) {
-        this.lat = lat;
+        this.Lat = lat;
     }
 
     public double getLon() {
-        return lon;
+        return Lon;
     }
 
     public void setLon(double lon) {
-        this.lon = lon;
+        this.Lon = lon;
     }
 }

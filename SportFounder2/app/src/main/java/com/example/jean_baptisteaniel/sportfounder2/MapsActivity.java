@@ -16,6 +16,7 @@ import com.example.jean_baptisteaniel.sportfounder2.Models.Lieu;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -68,7 +69,7 @@ public class MapsActivity extends FragmentActivity {
                             Location.distanceBetween(mLieu.getLat(), mLieu.getLon(), parseDouble(String.valueOf(row.get("Latitude"))), parseDouble(String.valueOf(row.get("Longitude"))), dist);
                             Log.d("distance", String.valueOf(dist[0]));
                             if (parseDouble(String.valueOf(dist[0]))/1000 <= 30) {
-                                addMarker(parseDouble(String.valueOf(row.get("Latitude"))), parseDouble(String.valueOf(row.get("Longitude"))), "other");
+                                addMarker(parseDouble(String.valueOf(row.get("Latitude"))), parseDouble(String.valueOf(row.get("Longitude"))), (String) row.get("Libelle"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -100,7 +101,7 @@ public class MapsActivity extends FragmentActivity {
         }
         mLieu.setCp(address.getPostalCode());
         mLieu.setNom(address.getLocality());
-        mLieu.setDescription(address.getLocale().toString());
+        mLieu.setDescription("Your position");
         setUpMapIfNeeded();
     }
 
@@ -145,6 +146,7 @@ public class MapsActivity extends FragmentActivity {
                 .title(s));
     }
 
+
     /**
      * This is where we can add markers or lines, add listeners or move the camera. In this case, we
      * just add a marker near Africa.
@@ -152,7 +154,11 @@ public class MapsActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        this.addMarker(mLieu.getLat(), mLieu.getLon(), mLieu.getDescription());
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(mLieu.getLat(), mLieu.getLon()))
+                .title(mLieu.getDescription())
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        //mLieu.getLat(), mLieu.getLon(), mLieu.getDescription());
         // Zoom in, animating the camera.
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLieu.getLat(), mLieu.getLon()), 1));
         mMap.animateCamera(CameraUpdateFactory.zoomIn());

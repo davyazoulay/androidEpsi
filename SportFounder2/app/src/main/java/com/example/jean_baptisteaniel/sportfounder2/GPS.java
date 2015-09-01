@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -30,6 +31,7 @@ public class GPS extends Service implements LocationListener {
     boolean canGetLocation = false;
 
     Location location; // location
+    Bundle adress;
     double latitude; // latitude
     double longitude; // longitude
 
@@ -74,6 +76,8 @@ public class GPS extends Service implements LocationListener {
                         location = locationManager
                                 .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                         if (location != null) {
+                            adress = location.getExtras();
+                            Log.d("extras", String.valueOf(adress));
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
                         }
