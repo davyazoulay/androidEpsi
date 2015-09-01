@@ -2,6 +2,7 @@ package com.example.jean_baptisteaniel.sportfounder2;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -112,10 +113,11 @@ public class UpdateProfileFragment extends android.support.v4.app.Fragment  {
     }
 
     private void cancelUpdate () {
-        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        android.support.v4.app.FragmentManager manager = getFragmentManager();
+        manager.popBackStackImmediate("updateProfile", manager.POP_BACK_STACK_INCLUSIVE);
+        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
         ProfilesFragment mFragment = ProfilesFragment.newInstance(save);
         transaction.replace(R.id.container, mFragment);
-        transaction.addToBackStack("cancelUpdate");
         transaction.commit();
     }
     private void submitUpdate () {
@@ -144,10 +146,7 @@ public class UpdateProfileFragment extends android.support.v4.app.Fragment  {
                     public void onResponse(JSONObject response) {
                         Utilisateur user = gson.fromJson(response.toString(), Utilisateur.class);
                         g.setUser(user);
-                        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.container, ProfilesFragment.newInstance(1), "backprofil"); //.newInstance(3), "profil_ami");
-                        ft.addToBackStack("backprofilfromupdate");
-                        ft.commit();
+                        cancelUpdate();
                     }
                 }, new Response.ErrorListener() {
             @Override

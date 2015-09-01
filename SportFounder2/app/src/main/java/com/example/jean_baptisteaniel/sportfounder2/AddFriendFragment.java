@@ -155,10 +155,12 @@ public class AddFriendFragment extends android.support.v4.app.Fragment  {
     }
 
     private void cancelUpdate () {
-        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        android.support.v4.app.FragmentManager manager = getFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
+        manager.popBackStackImmediate("AddFriend", manager.POP_BACK_STACK_INCLUSIVE);
         FriendsFragment mFragment = FriendsFragment.newInstance(save);
         transaction.replace(R.id.container, mFragment);
-        transaction.addToBackStack("cancelFriend");
+        //AddFriend
         transaction.commit();
     }
     private void submitUpdate () {
@@ -188,9 +190,10 @@ public class AddFriendFragment extends android.support.v4.app.Fragment  {
     }
 
     private void goListFriend () {
+        android.support.v4.app.FragmentManager manager = getFragmentManager();
+        manager.popBackStackImmediate("AddFriend", manager.POP_BACK_STACK_INCLUSIVE);
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, FriendsFragment.newInstance(3), "gofriend"); //.newInstance(3), "profil_ami");
-        ft.addToBackStack("friendfromAddfriend");
+        ft.replace(R.id.container, FriendsFragment.newInstance(3)); //.newInstance(3), "profil_ami");
         ft.commit();
     }
 

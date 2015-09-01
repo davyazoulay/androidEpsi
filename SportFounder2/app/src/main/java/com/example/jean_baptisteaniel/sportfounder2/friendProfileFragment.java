@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -150,9 +151,10 @@ public class friendProfileFragment extends android.support.v4.app.Fragment {
     }
 
     private void goListFriend () {
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, FriendsFragment.newInstance(3), "gofriend"); //.newInstance(3), "profil_ami");
-        ft.addToBackStack("friendfromAddfriend");
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction ft = manager.beginTransaction();
+        manager.popBackStackImmediate("profilefromfriend", manager.POP_BACK_STACK_INCLUSIVE);
+        ft.replace(R.id.container, FriendsFragment.newInstance(3));
         ft.commit();
     }
 
