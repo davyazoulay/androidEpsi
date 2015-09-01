@@ -3,11 +3,14 @@ package com.example.jean_baptisteaniel.sportfounder2;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +45,6 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
-
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
@@ -53,18 +55,10 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        /*if (mTitle.toString() == "Amis") {
-            mContentFragment = new FriendsFragment();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, mContentFragment)
-                    .commit();
-            Log.i("", mTitle.toString());
-        } else {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                    .commit();
-        }*/
-
+//        if (fragmentManager.getBackStackEntryCount() > 1) {
+        Log.d("length backstacks", String.valueOf(fragmentManager.getBackStackEntryCount()));
+        fragmentManager.popBackStackImmediate(String.valueOf(mTitle), 0);
+  //      }
         switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
@@ -74,16 +68,19 @@ public class MainActivity extends ActionBarActivity
             case 1:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, FriendsFragment.newInstance(position + 1))
-                        .commit();
+                        .addToBackStack("Amis")
+                    .commit();
                 break;
             case 2:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, GroupListFragment.newInstance(position + 1))
+                        .addToBackStack("Groupes")
                         .commit();
                 break;
             case 3:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, SportsFragment.newInstance(position + 1))
+                        .addToBackStack("Sports")
                         .commit();
                 break;
             case 4:
@@ -93,6 +90,7 @@ public class MainActivity extends ActionBarActivity
             case 5:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, ConversationFragment.newInstance(position + 1))
+                        .addToBackStack("Conversations")
                         .commit();
                 break;
         }
@@ -121,6 +119,14 @@ public class MainActivity extends ActionBarActivity
                 mTitle = "Conversations";
                 break;
         }
+    }
+    @Override
+        public void onBackPressed() {
+        super.onBackPressed();
+        int d = getFragmentManager().getBackStackEntryCount();
+        /*if (d == 0) {
+            finish();
+        }*/
     }
 
     public void restoreActionBar() {

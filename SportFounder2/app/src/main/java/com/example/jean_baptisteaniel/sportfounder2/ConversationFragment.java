@@ -140,8 +140,9 @@ public class ConversationFragment extends android.support.v4.app.Fragment {
 
         // Add the request to the RequestQueue.
 
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, ConversationDetailFragment.newInstance(3), "go Conversation"); //.newInstance(3), "profil_ami");
+        final android.support.v4.app.FragmentManager manager = getFragmentManager();
+        final android.support.v4.app.FragmentTransaction ft = manager.beginTransaction();
+        ft.replace(R.id.container, ConversationDetailFragment.newInstance(3)); //.newInstance(3), "profil_ami");
         ft.addToBackStack("conversation");
         ft.commit();
     }

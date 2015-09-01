@@ -126,8 +126,9 @@ public class GroupListFragment extends android.support.v4.app.Fragment{
 
 // Add the request to the RequestQueue.
 
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, GroupFragment.newInstance(3), "gogroupe"); //.newInstance(3), "profil_ami");
+        final android.support.v4.app.FragmentManager manager = getFragmentManager();
+        final android.support.v4.app.FragmentTransaction ft = manager.beginTransaction();
+        ft.replace(R.id.container, GroupFragment.newInstance(3)); //.newInstance(3), "profil_ami");
         ft.addToBackStack("group detail");
         ft.commit();
     }

@@ -1,6 +1,7 @@
 package com.example.jean_baptisteaniel.sportfounder2;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -138,9 +139,9 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
         }
 
 // Add the request to the RequestQueue.
-
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, friendProfileFragment.newInstance(3), "goprofil"); //.newInstance(3), "profil_ami");
+        final android.support.v4.app.FragmentManager manager = getFragmentManager();
+        final android.support.v4.app.FragmentTransaction ft = manager.beginTransaction();
+        ft.replace(R.id.container, friendProfileFragment.newInstance(3)); //.newInstance(3), "profil_ami");
         ft.addToBackStack("profilefromfriend");
         ft.commit();
     }

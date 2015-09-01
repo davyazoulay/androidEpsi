@@ -134,8 +134,11 @@ public class SportsFragment extends android.support.v4.app.Fragment {
 
 // Add the request to the RequestQueue.
 
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, SportDetailFragment.newInstance(6), "goSport"); // Jsais pas c quoi ce param(3)...
+        final android.support.v4.app.FragmentManager manager = getFragmentManager();
+        /*manager.popBackStack(null, manager.POP_BACK_STACK_INCLUSIVE);
+        manager.popBackStackImmediate();*/
+        final android.support.v4.app.FragmentTransaction ft = manager.beginTransaction();
+        ft.replace(R.id.container, SportDetailFragment.newInstance(6)); // Jsais pas c quoi ce param(3)...
         ft.addToBackStack("sport detail");
         ft.commit();
     }

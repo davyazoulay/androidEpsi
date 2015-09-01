@@ -98,7 +98,10 @@ public class ProfilesFragment extends android.support.v4.app.Fragment {
     }
 
     private void launchUpdate () {
-        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        android.support.v4.app.FragmentManager manager = getFragmentManager();
+        /*manager.popBackStack(null, manager.POP_BACK_STACK_INCLUSIVE);
+        manager.popBackStackImmediate();*/
+        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
         UpdateProfileFragment mFragment = UpdateProfileFragment.newInstance(0);
         transaction.replace(R.id.container, mFragment);
         transaction.addToBackStack("updateProfile");
