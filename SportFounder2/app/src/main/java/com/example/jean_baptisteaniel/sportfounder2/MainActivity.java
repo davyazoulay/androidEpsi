@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,7 +65,10 @@ public class MainActivity extends ActionBarActivity
                     .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                     .commit();
         }*/
-
+//        if (fragmentManager.getBackStackEntryCount() > 1) {
+        Log.d("length backstacks", String.valueOf(fragmentManager.getBackStackEntryCount()));
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        //      }
         switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
@@ -98,6 +102,12 @@ public class MainActivity extends ActionBarActivity
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.d("length backstacks", String.valueOf(getFragmentManager().getBackStackEntryCount()));
     }
 
     public void onSectionAttached(int number) {

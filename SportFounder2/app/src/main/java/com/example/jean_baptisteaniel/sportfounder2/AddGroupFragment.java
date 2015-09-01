@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -154,10 +155,11 @@ public class AddGroupFragment extends android.support.v4.app.Fragment  {
     }
 
     private void cancelUpdate () {
-        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        android.support.v4.app.FragmentManager manager = getFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
+        manager.popBackStackImmediate("AddGroup", manager.POP_BACK_STACK_INCLUSIVE);
         GroupListFragment mFragment = GroupListFragment.newInstance(save);
         transaction.replace(R.id.container, mFragment);
-        transaction.addToBackStack("cancelGroup");
         transaction.commit();
     }
     private void submitUpdate () {
@@ -187,9 +189,10 @@ public class AddGroupFragment extends android.support.v4.app.Fragment  {
     }
 
     private void goListGroupes () {
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, GroupListFragment.newInstance(3), "gogroupe"); //.newInstance(3), "profil_ami");
-        ft.addToBackStack("listegroupes");
+        final FragmentManager manager = getFragmentManager();
+        final FragmentTransaction ft = manager.beginTransaction();
+        manager.popBackStackImmediate("AddGroup", manager.POP_BACK_STACK_INCLUSIVE);
+        ft.replace(R.id.container, GroupListFragment.newInstance(3)); //.newInstance(3), "profil_ami");
         ft.commit();
     }
 

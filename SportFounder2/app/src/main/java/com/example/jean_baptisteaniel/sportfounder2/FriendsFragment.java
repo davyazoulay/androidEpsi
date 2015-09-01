@@ -157,7 +157,7 @@ public class FriendsFragment extends android.support.v4.app.Fragment {
 // Add the request to the RequestQueue.
 
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, friendProfileFragment.newInstance(3), "goprofil"); //.newInstance(3), "profil_ami");
+        ft.replace(R.id.container, friendProfileFragment.newInstance(3)); //.newInstance(3), "profil_ami");
         ft.addToBackStack("profilefromfriend");
         ft.commit();
     }

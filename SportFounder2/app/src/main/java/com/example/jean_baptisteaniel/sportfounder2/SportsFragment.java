@@ -78,13 +78,6 @@ public class SportsFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_sports, container, false);
-        Button mAddSportButton = (Button) v.findViewById(R.id.add_sport);
-        mAddSportButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchAddSport();
-            }
-        });
         final FragmentActivity c = getActivity();
         myRecycler = (RecyclerView) v.findViewById(R.id.recycler_view_sport);
         myRecycler.addOnItemTouchListener(
@@ -128,15 +121,6 @@ public class SportsFragment extends android.support.v4.app.Fragment {
         return v;
     }
 
-    private void launchAddSport () {
-        android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        AddSportFragment mFragment = AddSportFragment.newInstance(0);
-        transaction.replace(R.id.container, mFragment);
-        transaction.addToBackStack("AddSport");
-        transaction.commit();
-
-    }
-
     private void goSport (View v, int pos) {
         String url = null;
         Globals g = (Globals) getActivity().getApplication();
@@ -149,8 +133,8 @@ public class SportsFragment extends android.support.v4.app.Fragment {
 // Add the request to the RequestQueue.
 
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, SportDetailFragment.newInstance(6), "goSport"); // Jsais pas c quoi ce param(3)...
-        ft.addToBackStack("sport detail");
+        ft.replace(R.id.container, SportDetailFragment.newInstance(6)); // Jsais pas c quoi ce param(3)...
+        ft.addToBackStack("sport_detail");
         ft.commit();
     }
 
