@@ -32,13 +32,15 @@
                 android:text="Ajouter Sport"
                 android:id="@+id/update_submit_sport"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                style="@style/bouton"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Annuler"
-                android:id="@+id/update_cancel_sport" />
+                android:id="@+id/update_cancel_sport"
+                style="@style/bouton"/>
         </LinearLayout>
 
     </LinearLayout>

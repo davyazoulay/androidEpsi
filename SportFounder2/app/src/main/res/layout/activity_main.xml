@@ -6,7 +6,7 @@
     android:focusableInTouchMode="false"
     android:focusable="false"
     android:touchscreenBlocksFocus="false"
-    android:background="#375cff">
+    android:background="@drawable/gradient_1">
 
     <!-- As the main content view, the view below consumes the entire
          space available using match_parent in both dimensions. -->

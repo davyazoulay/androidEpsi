@@ -11,7 +11,10 @@
     </style>
 
     <style name="bouton">
-        <item name="android:color">#454545</item>
+        <item name="android:shadowDx">1.2</item>
+        <item name="android:shadowDy">1.2</item>
+        <item name="android:shadowRadius">1.5</item>
+        <item name="android:textSize" >8pt</item>
     </style>
 
     <style name="label">

@@ -45,7 +45,8 @@
             android:layout_height="wrap_content"
             android:text="Retirer de la liste d'amis"
             android:id="@+id/button_delete_friend"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            style="@style/bouton"/>
 
     </LinearLayout>
 
