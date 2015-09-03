@@ -73,13 +73,15 @@
                 android:text="Sauvegarder profil"
                 android:id="@+id/update_submit"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                style="@style/bouton"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Annuler"
-                android:id="@+id/update_cancel" />
+                android:id="@+id/update_cancel"
+                style="@style/bouton"/>
         </LinearLayout>
 
     </LinearLayout>

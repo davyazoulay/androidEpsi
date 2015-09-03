@@ -16,5 +16,6 @@
         android:layout_height="wrap_content"
         android:text="Ajouter Amis"
         android:id="@+id/add_friend"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        style="@style/bouton"/>
 </FrameLayout>

@@ -32,13 +32,15 @@
                 android:text="Ajouter Amis"
                 android:id="@+id/update_submit_friend"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                style="@style/bouton"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Annuler"
-                android:id="@+id/update_cancel_friend" />
+                android:id="@+id/update_cancel_friend"
+                style="@style/bouton"/>
 
 
         </LinearLayout>
