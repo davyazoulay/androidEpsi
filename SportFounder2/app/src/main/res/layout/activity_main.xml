@@ -5,8 +5,12 @@
     tools:context=".MainActivity"
     android:focusableInTouchMode="false"
     android:focusable="false"
+<<<<<<< HEAD
     android:touchscreenBlocksFocus="false"
     >
+=======
+    android:touchscreenBlocksFocus="false">
+>>>>>>> 7303d116681204ee3a5add86aa3c6650ad8e90f2
 
     <!-- As the main content view, the view below consumes the entire
          space available using match_parent in both dimensions. -->
